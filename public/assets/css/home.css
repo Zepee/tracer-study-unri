@@ -1,0 +1,115 @@
+body {
+    font-family: 'Lexend', sans-serif;
+    padding-top: 10px; /* Sesuaikan dengan tinggi navbar Anda */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700; 
+}
+
+p {
+    font-weight: 300;
+}
+
+/* Jika menggunakan flexbox untuk layout */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+}
+
+/*Isi survey*/
+.hero-banner {
+    background-color: #28a745; /* Warna hijau Bootstrap */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-banner h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.hero-banner p {
+    font-size: 1.25rem;
+}
+
+.hero-banner a {
+    border-radius: 25px;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+}
+
+/* manfaat */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%; /* Rasio aspek 4:3 */
+    overflow: hidden;
+    border-radius: 8px; /* Untuk sudut rounded */
+}
+
+.image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Membuat gambar memenuhi container dengan crop */
+    object-position: center; /* Gambar di tengah */
+}
+/* Pemetaan alumni */
+.lihat-peta a{
+    border-radius: 25px;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+/* Banner Footer */
+.footer-banner {
+    background-color: #28a745; /* Warna hijau Bootstrap */
+    height: 200px; /* Atur tinggi banner sesuai kebutuhan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.footer-banner h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-banner a {
+    border-radius: 25px;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+/* Style untuk dropdown filter kota dan provinsi */
+#provinceSelect, #citySelect {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.btn-show {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-show:hover {
+    background-color: #45a049;
+}
+
+
