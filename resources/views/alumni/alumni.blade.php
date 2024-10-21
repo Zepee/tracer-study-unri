@@ -1,19 +1,31 @@
 <x-layout>
+
     <x-slot name="header">
         Halaman Alumni
     </x-slot>
-
-    @if (session()->has('message'))
-        <div class="swal" data-swal="{{ session('message') }}"></div>
-    @endif
-
-    <!-- <a href="{{ url('/mahasiswa/create') }}" class="btn mahasiswa btn-success mb-3">+ Mahasiswa</a> -->
-
+    
     <div class="container card p-4">
-
+        {{-- Sub-navbar --}}
+        <ul class="breadcrumb col-lg-12">
+            <li>
+                <a href="{{ route('alumni') }}" class="breadcrumb-item active fw-bold text-success px-1">
+                    Data Alumni
+                </a>
+            </li>
+            <span class="px-2">|</span>
+            <li>
+                <a href="{{ route('peta') }}" class="px-1">
+                    Peta Alumni
+                </a>
+            </li>
+        </ul>
+        {{-- Sub-navbar --}}
+        
+        {{-- Filter --}}
         @php
             // Contoh data statis untuk angkatan
             $unique_angkatan = ['2018', '2019', '2020', '2021', '2022'];
+            $unique_status_pekerjaan = ['bekerja', 'tidak bekerja'];
         @endphp
 
         <!-- Desktop Version -->
@@ -45,8 +57,8 @@
                     <select id="angkatanFilterDaftarMahasiswaAdminProdi"
                         class="custom-select custom-select-md rounded-3 py-1 text-capitalize" style="width: 83px;">
                         <option value="" selected>Semua</option>
-                        @foreach ($unique_angkatan as $angkatan)
-                            <option value="{{ $angkatan }}">{{ $angkatan }}</option>
+                        @foreach ($unique_status_pekerjaan as $status_pekerjaan)
+                            <option value="{{ $status_pekerjaan }}">{{ $status_pekerjaan }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -89,9 +101,9 @@
                     id="searchFilterMobileDaftarMahasiswaAdminProdi" placeholder="">
             </div>
         </div>
+        {{-- Filter --}}
 
-        <table class="table table-responsive-lg text-center table-bordered table-striped" style="width:100%"
-            id="datatablesdaftarmhsadmprodi">
+        <table class="table table-responsive-lg table-bordered table-striped" id="datatables">
             <thead class="table-dark">
                 <tr>
                     <th class="text-center" scope="col">Nomor</th>
@@ -103,15 +115,39 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="6">None</td>
-                </tr>
+                    <tr>
+                        <td class="text-center">tidak ada data</td>
+                        <td class="text-center">tidak ada data</td>
+                        <td class="text-center">tidak ada data</td>
+                        <td class="text-center">tidak ada data</td>
+                        <td class="text-center">tidak ada data</td>
+                    
+                        <td class="text-center">
+                            <div class="d-flex gap-2 justify-content-center">
+                                <a class="btn btn-info btn-sm" href="#">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <button class="btn btn-secondary btn-sm btnCopy" data-slug="#">
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
-
     </div>
-    <br>
-    <br>
-    <br>
+
+    <script>
+        $(document).ready(function() {
+            $('#datatables').DataTable();
     
+            $('.btnCopy').click(function() {
+                var slugToCopy = $(this).data('slug');
+                navigator.clipboard.writeText(slugToCopy).then(function() {
+                    alert('Tautan berhasil disalin!');
+                });
+            });
+        });
+    </script>
+
 </x-layout>

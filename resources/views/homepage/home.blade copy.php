@@ -119,6 +119,151 @@
             color: #192f59 !important;
             background-color: white !important;
         }
+
+        #datatablesriwayatseminar_length,
+        #datatablesriwayatseminar_filter {
+            display: none;
+        }
+
+        #datatablesriwayatkpdanskripsi_length,
+        #datatablesriwayatkpdanskripsi_filter {
+            display: none;
+        }
+
+        #datatablesbimbinganskripsi_length,
+        #datatablesbimbinganskripsi_filter {
+            display: none;
+        }
+
+        #datatablesbimbingankp_length,
+        #datatablesbimbingankp_filter {
+            display: none;
+        }
+
+        #datatablesjadwalseminarpembimbingpenguji_length,
+        #datatablesjadwalseminarpembimbingpenguji_filter {
+            display: none;
+        }
+
+        #datatablespersetujuankpskripsi_length,
+        #datatablespersetujuankpskripsi_filter {
+            display: none;
+        }
+
+        #datatablesriwayatseminardibatalkan_length,
+        #datatablesriwayatseminardibatalkan_filter {
+            display: none;
+        }
+
+        #datatablesriwayatseminarprodi_length,
+        #datatablesriwayatseminarprodi_filter {
+            display: none;
+        }
+
+        #datatablesriwayatkpskripsiprodi_length,
+        #datatablesriwayatkpskripsiprodi_filter {
+            display: none;
+        }
+
+        #datatablesdataskripsiprodi_length,
+        #datatablesdataskripsiprodi_filter {
+            display: none;
+        }
+
+        #datatablesdatakpprodi_length,
+        #datatablesdatakpprodi_filter {
+            display: none;
+        }
+
+        #datatablesjadwalseminarprodi_length,
+        #datatablesjadwalseminarprodi_filter {
+            display: none;
+        }
+
+        #datatablesdaftarlulusbimbinganskripsi_length,
+        #datatablesdaftarlulusbimbinganskripsi_filter {
+            display: none;
+        }
+
+        #datatablesdaftarbebanbimbinganskripsi_length,
+        #datatablesdaftarbebanbimbinganskripsi_filter {
+            display: none;
+        }
+
+        #datatablesdaftarselesaibimbingankp_length,
+        #datatablesdaftarselesaibimbingankp_filter {
+            display: none;
+        }
+
+        #datatablesdaftarbebanbimbingankp_length,
+        #datatablesdaftarbebanbimbingankp_filter {
+            display: none;
+        }
+
+        #datatablesdataskripsimhsadmin_length,
+        #datatablesdataskripsimhsadmin_filter {
+            display: none;
+        }
+
+        #datatablesdatakpmhsadmin_length,
+        #datatablesdatakpmhsadmin_filter {
+            display: none;
+        }
+
+        #datatablesjadwalseminaradminprodi_length,
+        #datatablesjadwalseminaradminprodi_filter {
+            display: none;
+        }
+
+        #datatablespersetujuankpskripsiadmin_length,
+        #datatablespersetujuankpskripsiadmin_filter {
+            display: none;
+        }
+
+        #datatablesdaftarmhsadmprodi_length,
+        #datatablesdaftarmhsadmprodi_filter {
+            display: none;
+        }
+
+        #datatablesdaftarprodiadmjurusan_length,
+        #datatablesdaftarprodiadmjurusan_filter {
+            display: none;
+        }
+
+        #datatablesdaftarkonsentrasiadmjurusan_length,
+        #datatablesdaftarkonsentrasiadmjurusan_filter {
+            display: none;
+        }
+
+        #datatablesdaftardosenadmjurusan_length,
+        #datatablesdaftardosenadmjurusan_filter {
+            display: none;
+        }
+
+        #datatablesdaftartendikadmjurusan_length,
+        #datatablesdaftartendikadmjurusan_filter {
+            display: none;
+        }
+
+        #datatablesdaftarplpadmjurusan_length,
+        #datatablesdaftarplpadmjurusan_filter {
+            display: none;
+        }
+
+        #datatablesdaftarhakaksesadmjurusan_length,
+        #datatablesdaftarhakaksesadmjurusan_filter {
+            display: none;
+        }
+
+        #datatablesjadwalseminaruntukmhs_length,
+        #datatablesjadwalseminaruntukmhs_filter {
+            display: none;
+        }
+
+        #datatablesjudulskripsiterdaftar_length,
+        #datatablesjudulskripsiterdaftar_filter {
+            display: none;
+        }
     </style>
 </head>
 <body>

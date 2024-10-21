@@ -18,8 +18,8 @@
             <ul class="navbar-nav">
                 {{-- MENU BERANDA --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('home*') ? 'text-success' : '' }}" 
-                       aria-current="page" href="{{ route('home') }}">BERANDA</a>
+                    <a class="nav-link {{ Request::is('pengumuman*') ? 'text-success' : '' }}" 
+                       aria-current="page" href="{{ route('pengumuman') }}">PENGUMUMAN</a>
                 </li>
                 
                 {{-- MENU ALUMNI --}}
@@ -28,11 +28,11 @@
                        aria-current="page" href="{{ route('alumni') }}">ALUMNI</a>
                 </li>
                 
-                {{-- MENU PETA --}}
+                {{-- MENU PETA
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('map*') ? 'text-success' : '' }}" 
-                       aria-current="page" href="{{ route('map') }}">PETA</a>
-                </li>
+                    <a class="nav-link {{ Request::is('peta*') ? 'text-success' : '' }}" 
+                       aria-current="page" href="{{ route('peta') }}">PETA</a>
+                </li> --}}
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

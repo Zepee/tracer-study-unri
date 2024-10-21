@@ -14,10 +14,10 @@ Route::get('/alumni', function () {
     return view('alumni.alumni');
 })->name('alumni');
 
-Route::get('/home', function () {
-    return view('homepage.home');
-})->name('home');
+Route::get('/pengumuman', function () {
+    return view('pengumuman.pengumuman');
+})->name('pengumuman');
 
-Route::get('/map', function () {
+Route::get('/peta', function () {
     return view('map.map');
-})->name('map');
+})->name('peta');
