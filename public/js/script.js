@@ -218,4 +218,58 @@ document.addEventListener('DOMContentLoaded', function() {
         var marker = L.marker(alumni.location).addTo(map);
         marker.bindPopup("<b>" + alumni.name + "</b><br>Pekerjaan: " + alumni.job);
     });
+
+    //city label
+// Memuat file GeoJSON batas kota
+$.getJSON('/geojson/kota.geojson', function(kotaData) {
+    console.log('Kota data loaded:', kotaData);
+    
+    var activeTooltip = null; // Variabel untuk menyimpan tooltip yang aktif
+
+    L.geoJson(kotaData, {
+        style: defaultStyle, // Setel style awal untuk kota
+        onEachFeature: function (feature, layer) {
+            // Simpan layer kota dengan provinsi sebagai kuncinya
+            if (feature.properties && feature.properties.NAME_2 && feature.properties.NAME_1) {
+                if (!cityLayers[feature.properties.NAME_1]) {
+                    cityLayers[feature.properties.NAME_1] = [];
+                }
+                cityLayers[feature.properties.NAME_1].push({
+                    name: feature.properties.NAME_2,
+                    layer: layer
+                });
+
+                // Menambahkan event click ke setiap kota
+                layer.on({
+                    click: function(e) {
+                        highlightCity(layer);
+
+                        // Update dropdown kota dan provinsi saat kota di klik
+                        $('#provinceSelect').val(feature.properties.NAME_1).trigger('change');
+                        $('#citySelect').val(feature.properties.NAME_2).trigger('change');
+
+                        // Jika ada tooltip yang aktif sebelumnya, tutup tooltip tersebut
+                        if (activeTooltip) {
+                            activeTooltip.closeTooltip();
+                        }
+
+                        // Buka tooltip kota yang diklik
+                        layer.bindTooltip(feature.properties.NAME_2, {
+                            permanent: true, // Tooltip akan tetap terlihat sampai ada klik baru
+                            direction: "center", // Tampilkan di tengah
+                            className: 'city-label' // Tambahkan class untuk styling custom
+                        }).openTooltip();
+
+                        // Simpan tooltip yang sedang aktif
+                        activeTooltip = layer;
+                    }
+                });
+            }
+        }
+    }).addTo(map);
+    
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    console.error("Error loading kota data:", textStatus, errorThrown);
+});
+
 });

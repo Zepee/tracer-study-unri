@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Memuat file GeoJSON batas provinsi
-    $.getJSON('/geojson/batas_wilayah_provinsi.geojson', function(provinsiData) {
+    $.getJSON('/geojson/provinsi.geojson', function(provinsiData) {
         console.log('Provinsi data loaded:', provinsiData);
         L.geoJson(provinsiData, {
             style: provinceStyle, // Setel style awal untuk provinsi
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Memuat file GeoJSON batas kota
-    $.getJSON('/geojson/batas_wilayah_kota.geojson', function(kotaData) {
+    $.getJSON('/geojson/kota.geojson', function(kotaData) {
         console.log('Kota data loaded:', kotaData);
         L.geoJson(kotaData, {
             style: defaultStyle, // Setel style awal untuk kota
@@ -184,21 +184,26 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: "Fajar Kurniawan", location: [ -0.026330, 109.342503 ], job: "Kepala IT di Pontianak" }
     ];
 
-    var alumniTable = document.querySelector("#alumniTable tbody");
-    alumniData.forEach(function(alumni, index) {
-        var row = alumniTable.insertRow();
-        row.insertCell(0).innerText = alumni.name;
-        row.insertCell(1).innerText = alumni.location.join(", ");
-        row.insertCell(2).innerText = alumni.job;
-        var actionCell = row.insertCell(3);
-        var button = document.createElement("button");
-        button.classList.add("btn-show");
-        button.innerText = "Tampilkan di Peta";
-        button.onclick = function() {
-            showAlumniOnMap(alumni, index);
-        };
-        actionCell.appendChild(button);
-    });
+    let alumniTable = document.getElementById('alumniTable');
+    if (alumniTable) {
+        // Gunakan alumniTable di sini
+        alumniData.forEach(function(alumni, index) {
+            var row = alumniTable.insertRow();
+            row.insertCell(0).innerText = alumni.name;
+            row.insertCell(1).innerText = alumni.location.join(", ");
+            row.insertCell(2).innerText = alumni.job;
+            var actionCell = row.insertCell(3);
+            var button = document.createElement("button");
+            button.classList.add("btn-show");
+            button.innerText = "Tampilkan di Peta";
+            button.onclick = function() {
+                showAlumniOnMap(alumni, index);
+            };
+            actionCell.appendChild(button);
+        });
+    } else {
+        console.error('Element dengan id "alumniTable" tidak ditemukan');
+    }
 
     // Fungsi untuk menampilkan alumni di peta
     function showAlumniOnMap(alumni, index) {
@@ -213,4 +218,58 @@ document.addEventListener('DOMContentLoaded', function() {
         var marker = L.marker(alumni.location).addTo(map);
         marker.bindPopup("<b>" + alumni.name + "</b><br>Pekerjaan: " + alumni.job);
     });
+
+    //city label
+// Memuat file GeoJSON batas kota
+$.getJSON('/geojson/kota.geojson', function(kotaData) {
+    console.log('Kota data loaded:', kotaData);
+    
+    var activeTooltip = null; // Variabel untuk menyimpan tooltip yang aktif
+
+    L.geoJson(kotaData, {
+        style: defaultStyle, // Setel style awal untuk kota
+        onEachFeature: function (feature, layer) {
+            // Simpan layer kota dengan provinsi sebagai kuncinya
+            if (feature.properties && feature.properties.NAME_2 && feature.properties.NAME_1) {
+                if (!cityLayers[feature.properties.NAME_1]) {
+                    cityLayers[feature.properties.NAME_1] = [];
+                }
+                cityLayers[feature.properties.NAME_1].push({
+                    name: feature.properties.NAME_2,
+                    layer: layer
+                });
+
+                // Menambahkan event click ke setiap kota
+                layer.on({
+                    click: function(e) {
+                        highlightCity(layer);
+
+                        // Update dropdown kota dan provinsi saat kota di klik
+                        $('#provinceSelect').val(feature.properties.NAME_1).trigger('change');
+                        $('#citySelect').val(feature.properties.NAME_2).trigger('change');
+
+                        // Jika ada tooltip yang aktif sebelumnya, tutup tooltip tersebut
+                        if (activeTooltip) {
+                            activeTooltip.closeTooltip();
+                        }
+
+                        // Buka tooltip kota yang diklik
+                        layer.bindTooltip(feature.properties.NAME_2, {
+                            permanent: true, // Tooltip akan tetap terlihat sampai ada klik baru
+                            direction: "center", // Tampilkan di tengah
+                            className: 'city-label' // Tambahkan class untuk styling custom
+                        }).openTooltip();
+
+                        // Simpan tooltip yang sedang aktif
+                        activeTooltip = layer;
+                    }
+                });
+            }
+        }
+    }).addTo(map);
+    
+}).fail(function(jqXHR, textStatus, errorThrown) {
+    console.error("Error loading kota data:", textStatus, errorThrown);
+});
+
 });
