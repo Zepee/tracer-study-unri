@@ -13,7 +13,7 @@
             <i class="fas fa-bars fs-1 fa-lg"></i>
         </span>
 
-        {{-- Wrapper Menus --}}
+        {{-- Wrapper Menu --}}
         <div class="collapse navbar-collapse navbar-toggler-collapse rounded-bottom justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 {{-- MENU BERANDA --}}

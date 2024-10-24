@@ -64,10 +64,6 @@
 
 
         @media screen and (max-width: 768px) {
-            .cardskripsi {
-                margin-bottom: 50px;
-            }
-
             .dropdown-menu form li i {
                 margin-left: -15px;
             }
@@ -114,6 +110,7 @@
             background-color: white !important;
         }
     </style>
+    
 </head>
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
@@ -140,7 +137,7 @@
         <!-- /.content-wrapper -->
 
         <!-- Main Footer -->
-        <footer style="margin-top:0 auto; padding-top:0;">
+        <footer style="margin-top: auto; padding-top: 0;">
             <x-footer/>
         </footer>
 

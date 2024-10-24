@@ -183,44 +183,7 @@
                         </div>
                     </div>
                 </div>
-            {{-- <div class="col-lg-4">
-                <div class="card mb-4 border-0">
-                    <div class="card-body">
-                        <h3 class="card-title text-unri"><i class="fas fa-info-circle me-2"></i>Informasi Penting</h3>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Batas waktu pengisian
-                                <span class="badge bg-unri rounded-pill">30 Nov 2023</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Total responden saat ini
-                                <span class="badge bg-unri rounded-pill">150 alumni</span>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    Tingkat partisipasi
-                                    <span>75%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-unri" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="card border-0">
-                    <div class="card-body">
-                        <h3 class="card-title text-unri"><i class="fas fa-envelope me-2"></i>Kontak</h3>
-                        <p>Jika Anda memiliki pertanyaan, silakan hubungi:</p>
-                        <ul class="list-unstyled">
-                            <li><i class="fas fa-envelope me-2"></i>Email: tracerstudy@unri.ac.id</li>
-                            <li><i class="fas fa-phone me-2"></i>Telepon: (0761) 123456</li>
-                            <li><i class="fas fa-map-marker-alt me-2"></i>Alamat: Kampus Bina Widya, Simpang Baru, Pekanbaru 28293</li>
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
         </div>
 </x-layout>
 

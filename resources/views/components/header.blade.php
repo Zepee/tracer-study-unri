@@ -1,8 +1,8 @@
 <div class="content-header">
     <div class="container">
         <div>
-            <div class="anak-judul">
-                <h4>{{ $slot }}</h4>
+            <div class="container-judul">
+                <h4 class=>{{ $slot }}</h4>
                 <hr>
             </div>
         </div>

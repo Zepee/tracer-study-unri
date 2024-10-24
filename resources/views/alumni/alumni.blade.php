@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-slot name="header">
+    <x-slot name="header">      
         Halaman Alumni
     </x-slot>
     
