@@ -62,6 +62,26 @@
             background-color: rgba(46, 125, 50, 0.05);
             transform: translateX(5px);
         }
+
+        h2.card-title {
+        font-size: 1.8rem; /* Ukuran font lebih besar */
+        font-weight: bold; /* Menebalkan teks */
+        text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
+        letter-spacing: 1px; /* Jarak antar huruf */
+        color: #2e7d32; /* Warna teks */
+        border-bottom: 2px solid #1b5e20; /* Garis bawah yang lebih tebal */
+        padding-bottom: 0.5rem; /* Jarak bawah */
+        /* align-items: center;
+        justify-content: center;
+        display: flex; */
+        float: none;
+
+        }
+
+        h2.card-title i {
+        font-size: 1.5rem; /* Ukuran ikon disesuaikan */
+        vertical-align: middle; /* Menjaga ikon sejajar dengan teks */
+        }
     </style>
 
 <x-layout>
@@ -76,7 +96,7 @@
                         <h2 class="card-title text-unri mb-4 pb-2 border-bottom col-12"><i class="fas fa-bullhorn me-2"></i>Pengumuman Terbaru</h2>
 
                         <div class="mb-4 pengumuman-item">
-                            <h3 class="h4 mb-3 fw-bold">Pengumuman Tracer Study Teknik Informatika UNRI 2023</h3>
+                            <h3 class="h4 mb-3 fw-bold">Info Tracer Study Teknik Informatika UNRI 2023</h3>
                             <p class="text-muted mb-2"><i class="far fa-calendar-alt me-2"></i>21 Oktober 2023 | <i class="far fa-user me-2"></i>Tim Tracer Study</p>
                             <p class="mb-3">Kepada seluruh alumni Teknik Informatika Universitas Riau, kami mengundang Anda untuk berpartisipasi dalam Tracer Study 2023. Partisipasi Anda sangat berharga bagi pengembangan program studi dan peningkatan kualitas lulusan kami.</p>
                             <a href="#" class="btn btn-sm btn-outline-success">Baca selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
@@ -84,15 +104,15 @@
 
                         <div class=" mb-4 pengumuman-item">
                             <h3 class="h4 mb-3 fw-bold">Periode Pengisian Tracer Study</h3>
-                            <p class="text-muted mb-2">Tim Tracer Study | 20 Oktober 2023</p>
-                            <p>Kami informasikan bahwa periode pengisian Tracer Study 2023 akan berlangsung dari tanggal 1 November hingga 30 November 2023. Mohon partisipasi aktif dari seluruh alumni.</p>
+                            <p class="text-muted mb-2"><i class="far fa-calendar-alt me-2"></i>21 Oktober 2023 | <i class="far fa-user me-2"></i>Tim Tracer Study</p>
+                            <p class="mb-3">Kepada seluruh alumni Teknik Informatika Universitas Riau, kami mengundang Anda untuk berpartisipasi dalam Tracer Study 2023. Partisipasi Anda sangat berharga bagi pengembangan program studi dan peningkatan kualitas lulusan kami.</p>
                             <a href="#" class="btn btn-sm btn-outline-success">Baca selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
 
                         <div class=" mb-4 pengumuman-item">
                             <h3 class="h4 mb-3 fw-bold">Pentingnya Data Tracer Study</h3>
-                            <p class="text-muted mb-2">Ketua Program Studi | 19 Oktober 2023</p>
-                            <p>Data Tracer Study sangat penting untuk evaluasi dan pengembangan kurikulum. Kami mengajak seluruh alumni untuk berkontribusi dalam peningkatan kualitas pendidikan di Teknik Informatika UNRI.</p>
+                            <p class="text-muted mb-2"><i class="far fa-calendar-alt me-2"></i>21 Oktober 2023 | <i class="far fa-user me-2"></i>Tim Tracer Study</p>
+                            <p class="mb-3">Kepada seluruh alumni Teknik Informatika Universitas Riau, kami mengundang Anda untuk berpartisipasi dalam Tracer Study 2023. Partisipasi Anda sangat berharga bagi pengembangan program studi dan peningkatan kualitas lulusan kami.</p>
                             <a href="#" class="btn btn-sm btn-outline-success">Baca selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
@@ -114,41 +134,6 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="card mb-4 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h3 class="card-title text-unri"><i class="fas fa-info-circle me-2"></i>Informasi Penting</h3>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Batas waktu pengisian
-                                <span class="badge bg-unri rounded-pill">30 Nov 2023</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Total responden saat ini
-                                <span class="badge bg-unri rounded-pill">150 alumni</span>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    Tingkat partisipasi
-                                    <span>75%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-unri" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            
-                <div class="card mb-4 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h3 class="card-title text-unri"><i class="fas fa-link me-2"></i>Tautan Cepat</h3>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#" class="text-unri">Formulir Tracer Study</a></li>
-                            <li class="list-group-item"><a href="#" class="text-unri">Panduan Pengisian</a></li>
-                            <li class="list-group-item"><a href="#" class="text-unri">Hasil Tracer Study Tahun Lalu</a></li>
-                        </ul>
-                    </div>
-                </div>
             
                 <div class="card mb-4 border-0 shadow-sm">
                     <div class="card-body">
@@ -229,7 +214,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Status Lulusan Teknik Informatika UNRI'
+                        // text: 'Status Lulusan Teknik Informatika UNRI'
                     }
                 }
             }
@@ -266,7 +251,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Tingkat Kepuasan Lulusan'
+                        // text: 'Tingkat Kepuasan Lulusan'
                     }
                 }
             }
