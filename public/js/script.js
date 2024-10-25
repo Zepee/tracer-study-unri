@@ -181,6 +181,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Tampilkan layer kota yang sesuai
             showCityLayer(provinceName);
+
+            // Panggil filter alumni saat provinsi diubah
+            filterAlumni(); 
         }
     });
 
@@ -196,6 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }).layer;
 
             highlightCity(cityLayer);
+
+            // Panggil filter alumni saat kota diubah
+            filterAlumni(); 
         }
         
     });
@@ -203,87 +209,145 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Data Alumni: Nama, Lokasi, dan Pekerjaan
     var alumniData = [
-        { name: "Rizki Santoso", location: [ -6.914744, 107.609810 ], job: "Software Engineer di Bandung" },
-        { name: "Dewi Lestari", location: [ -7.250445, 112.768845 ], job: "Data Analyst di Surabaya" },
-        { name: "Ahmad Wijaya", location: [ 3.595196, 98.672223 ], job: "Manager Operasional di Medan" },
-        { name: "Siti Nurhaliza", location: [ -5.147665, 119.432732 ], job: "Kepala HRD di Makassar" },
-        { name: "Budi Setiawan", location: [ -6.966667, 110.416664 ], job: "Financial Advisor di Semarang" },
-        { name: "Fitri Hidayat", location: [ -8.670458, 115.212629 ], job: "Senior Web Developer di Denpasar" },
-        { name: "Yuni Puspitasari", location: [ -7.795580, 110.369490 ], job: "Project Manager di Yogyakarta" },
-        { name: "Andi Saputra", location: [ 0.533333, 101.450000 ], job: "Konsultan IT di Pekanbaru" },
-        { name: "Maya Sari Dewi", location: [ -3.318606, 114.594378 ], job: "Marketing Manager di Banjarmasin" },
-        { name: "Fajar Kurniawan", location: [ -0.026330, 109.342503 ], job: "Kepala IT di Pontianak" },
-        { name: "Lina Kurniawati", location: [ -2.200340, 106.113209 ], job: "Product Manager di Pangkal Pinang" },
-        { name: "Teguh Prasetyo", location: [ -3.991694, 122.512974 ], job: "DevOps Engineer di Kendari" },
-        { name: "Dedi Saputra", location: [ -5.429320, 105.262287 ], job: "System Analyst di Bandar Lampung" },
-        { name: "Rina Pertiwi", location: [ 1.492659, 124.841930 ], job: "UI/UX Designer di Manado" },
-        { name: "Asep Maulana", location: [ -6.990360, 110.422769 ], job: "Cybersecurity Specialist di Semarang" },
-        { name: "Sari Kusuma", location: [ -7.322350, 108.214941 ], job: "Full Stack Developer di Cirebon" },
-        { name: "Dewi Setianingsih", location: [ -6.605800, 106.797245 ], job: "Graphic Designer di Bogor" },
-        { name: "Riko Pratama", location: [ -7.816000, 110.373400 ], job: "Cloud Engineer di Yogyakarta" },
-        { name: "Vina Rahmawati", location: [ 3.324400, 99.143001 ], job: "Mobile Developer di Sibolga" },
-        { name: "Agus Wijaya", location: [ -7.336200, 112.726300 ], job: "Frontend Developer di Gresik" },
-        { name: "Tasya Putri", location: [ -7.722000, 110.378700 ], job: "Database Administrator di Yogyakarta" },
-        { name: "Bambang Setiawan", location: [ 0.563300, 101.425000 ], job: "Network Engineer di Pekanbaru" },
-        { name: "Rizal Firmansyah", location: [ -6.175110, 106.865039 ], job: "Tech Lead di Jakarta" },
-        { name: "Tika Ardianti", location: [ -6.186500, 106.828300 ], job: "Data Scientist di Jakarta" },
-        { name: "Nina Suryani", location: [ -6.914167, 107.602357 ], job: "Backend Developer di Bandung" },
-        { name: "Rudi Hartono", location: [ -8.409518, 115.188919 ], job: "Scrum Master di Bali" },
-        { name: "Alif Nurdin", location: [ -5.550000, 105.300000 ], job: "IT Consultant di Lampung" },
-        { name: "Ayu Putri", location: [ 1.476494, 125.033199 ], job: "Digital Marketer di Bitung" },
-        { name: "Rio Permadi", location: [ 2.082481, 99.863763 ], job: "System Administrator di Sibolga" },
-        { name: "Hendra Wijaya", location: [ -7.257500, 112.752083 ], job: "QA Engineer di Surabaya" },
-        { name: "Rizki Andriansyah", location: [ -7.655397, 111.512292 ], job: "Penetration Tester di Madiun" },
-        { name: "Lilis Suryani", location: [ -6.242227, 107.015785 ], job: "Web Developer di Karawang" },
-        { name: "Andika Putra", location: [ 0.507067, 101.447779 ], job: "IT Manager di Pekanbaru" },
-        { name: "Fikri Ramadhan", location: [ -7.783308, 110.363033 ], job: "DevOps Engineer di Yogyakarta" },
-        { name: "Yuli Rahayu", location: [ -7.269788, 112.742503 ], job: "Content Strategist di Surabaya" },
-        { name: "Farhan Ahmad", location: [ -6.889836, 110.642207 ], job: "Software Architect di Semarang" },
-        { name: "Indra Pratama", location: [ 1.123736, 104.042359 ], job: "Cloud Specialist di Batam" },
-        { name: "Bella Yuniar", location: [ -3.316694, 114.618522 ], job: "HR Manager di Banjarmasin" },
-        { name: "Agung Kurniawan", location: [ -7.977778, 112.634722 ], job: "Product Designer di Malang" },
-        { name: "Putri Ananda", location: [ -8.658602, 115.174254 ], job: "IT Support di Denpasar" },
-        { name: "Yosep Wibowo", location: [ -6.595038, 106.789327 ], job: "Data Engineer di Bogor" },
-        { name: "Gilang Ramadhan", location: [ -2.989064, 104.756596 ], job: "System Engineer di Palembang" },
-        { name: "Wulan Puspa", location: [ -7.358707, 109.904491 ], job: "Content Manager di Purwokerto" },
-        { name: "Ilham Saputra", location: [ -7.629290, 112.909830 ], job: "Tech Support di Pasuruan" },
-        { name: "Dina Amelia", location: [ -6.822515, 107.614922 ], job: "SEO Specialist di Bandung" },
-        { name: "Iwan Santoso", location: [ 3.577297, 98.683103 ], job: "Mobile Developer di Medan" },
-        { name: "Dewi Andriani", location: [ -6.208763, 106.845599 ], job: "Social Media Strategist di Jakarta" },
-        { name: "Rahmat Gunawan", location: [ -3.363889, 114.607222 ], job: "IT Trainer di Banjarmasin" },
-        { name: "Widya Anggraini", location: [ -2.204700, 106.325800 ], job: "IT Project Manager di Pangkalpinang" },
-        { name: "Sigit Nugroho", location: [ -7.801194, 110.364917 ], job: "Full Stack Developer di Yogyakarta" },
-        { name: "Ayu Saraswati", location: [ -7.799707, 110.372530 ], job: "Data Analyst di Yogyakarta" },
-        { name: "Bagus Prasetyo", location: [ -7.796830, 110.370389 ], job: "Software Engineer di Yogyakarta" },
-        { name: "Rina Sari", location: [ -7.807170, 110.365790 ], job: "Graphic Designer di Yogyakarta" },
-        { name: "Yuli Andriani", location: [ -7.803284, 110.368710 ], job: "UX/UI Designer di Yogyakarta" },
-        { name: "Bambang Setiawan", location: [ -7.799693, 110.374561 ], job: "Network Administrator di Yogyakarta" },
-        { name: "Rahmawati", location: [ -7.805012, 110.370738 ], job: "Database Administrator di Yogyakarta" },
-        { name: "Agung Pratama", location: [ -7.798911, 110.371468 ], job: "Backend Developer di Yogyakarta" },
-        { name: "Dewi Kusuma", location: [ -7.810909, 110.368732 ], job: "Frontend Developer di Yogyakarta" },
-        { name: "Joko Susanto", location: [ -7.804892, 110.372893 ], job: "IT Support di Yogyakarta" },
-        { name: "Tika Rahma", location: [ -7.809800, 110.364987 ], job: "Cybersecurity Specialist di Yogyakarta" },
-        { name: "Yusuf Wibowo", location: [ -7.803831, 110.366251 ], job: "Tech Lead di Yogyakarta" },
-        { name: "Sari Indah", location: [ -7.806954, 110.369912 ], job: "Scrum Master di Yogyakarta" },
-        { name: "Adi Nugraha", location: [ -7.799128, 110.374019 ], job: "Cloud Engineer di Yogyakarta" },
-        { name: "Wahyu Setiawan", location: [ -7.797651, 110.371651 ], job: "Penetration Tester di Yogyakarta" },
-        { name: "Andi Kurniawan", location: [ -7.806000, 110.373000 ], job: "System Analyst di Yogyakarta" },
-        { name: "Ratna Sari", location: [ -7.799564, 110.372319 ], job: "Product Manager di Yogyakarta" },
-        { name: "Dewi Anggraini", location: [ -7.802776, 110.369094 ], job: "Software Architect di Yogyakarta" },
-        { name: "Faisal Ramadhan", location: [ -7.804201, 110.370489 ], job: "Mobile Developer di Yogyakarta" },
-        { name: "Hendra Susanto", location: [ -7.807631, 110.372133 ], job: "System Engineer di Yogyakarta" },
-        { name: "Ilham Hidayat", location: [ -7.799250, 110.366872 ], job: "Frontend Engineer di Yogyakarta" },
-        { name: "Rina Kartika", location: [ -7.800180, 110.369114 ], job: "Full Stack Developer di Yogyakarta" },
-        { name: "Rudi Hartanto", location: [ -7.804430, 110.367862 ], job: "Database Administrator di Yogyakarta" },
-        { name: "Dian Pratama", location: [ -7.802568, 110.374172 ], job: "Cloud Specialist di Yogyakarta" },
-        { name: "Indra Wijaya", location: [ -7.798413, 110.371993 ], job: "DevOps Engineer di Yogyakarta" },
-        { name: "Rina Maulana", location: [ -7.801239, 110.373040 ], job: "Backend Developer di Yogyakarta" },
-        { name: "Yogi Prasetyo", location: [ -7.806251, 110.371102 ], job: "IT Manager di Yogyakarta" },
-        { name: "Dewi Andriani", location: [ -7.799442, 110.374112 ], job: "Product Designer di Yogyakarta" },
-        { name: "Wahyu Santoso", location: [ -7.800681, 110.368003 ], job: "Tech Support di Yogyakarta" },
-        { name: "Agus Pranata", location: [ -7.808954, 110.365774 ], job: "Mobile Developer di Yogyakarta" }
-    ];
-        
+        { name: "Rizki Santoso", company: "PT ABC", location: [ -6.914744, 107.609810 ], job: "Software Engineer", province: "Jawa Barat", city: "Bandung", graduationYear: 2020 },
+        { name: "Dewi Lestari", company: "PT XYZ", location: [ -7.250445, 112.768845 ], job: "Data Analyst", province: "Jawa Timur", city: "Surabaya", graduationYear: 2018 },
+        { name: "Ahmad Wijaya", company: "PT DEF", location: [ 3.595196, 98.672223 ], job: "Manager Operasional", province: "Sumatera Utara", city: "Medan", graduationYear: 2019 },
+        { name: "Siti Nurhaliza", company: "PT GHI", location: [ -5.147665, 119.432732 ], job: "Kepala HRD", province: "Sulawesi Selatan", city: "Makassar", graduationYear: 2021 },
+        { name: "Budi Setiawan", company: "PT JKL", location: [ -6.966667, 110.416664 ], job: "Financial Advisor", province: "Jawa Tengah", city: "Semarang", graduationYear: 2022 },
+        { name: "Fitri Hidayat", company: "PT MNO", location: [ -8.670458, 115.212629 ], job: "Senior Web Developer", province: "Bali", city: "Denpasar", graduationYear: 2020 },
+        // Daerah Riau
+        { name: "Andi Saputra", company: "PT PQR", location: [ 0.533333, 101.450000 ], job: "Konsultan IT", province: "Riau", city: "Pekanbaru", graduationYear: 2019 },
+        { name: "Nur Aini", company: "PT STU", location: [ 0.599571, 100.993670 ], job: "Backend Developer", province: "Riau", city: "Dumai", graduationYear: 2020 },
+        { name: "Doni Firmansyah", company: "PT VWX", location: [ 0.520000, 101.450000 ], job: "Frontend Developer", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
+        { name: "Zainul Abidin", company: "PT YZA", location: [ 0.699571, 100.993670 ], job: "IT Support", province: "Riau", city: "Dumai", graduationYear: 2018 },
+        { name: "Rina Amelia", company: "PT BCD", location: [ 0.533333, 101.450000 ], job: "Mobile Developer", province: "Riau", city: "Pekanbaru", graduationYear: 2022 },
+        { name: "Putri Larasati", company: "PT EFG", location: [ 0.633333, 101.150000 ], job: "Data Analyst", province: "Riau", city: "Siak", graduationYear: 2020 },
+        { name: "Budi Haryono", company: "PT HIJ", location: [ 0.333333, 101.450000 ], job: "System Engineer", province: "Riau", city: "Pelalawan", graduationYear: 2019 },
+        { name: "Yulia Kartika", company: "PT KLM", location: [ 0.733333, 101.350000 ], job: "Database Administrator", province: "Riau", city: "Kampar", graduationYear: 2021 },
+        { name: "Syahrul Gunawan", company: "PT NOP", location: [ 0.433333, 101.650000 ], job: "Network Engineer", province: "Riau", city: "Bengkalis", graduationYear: 2020 },
+        { name: "Maya Putri", company: "PT QRS", location: [ 0.333333, 101.750000 ], job: "Full Stack Developer", province: "Riau", city: "Rokan Hilir", graduationYear: 2022 },
+        { name: "Hendra Wijaya", company: "PT TUV", location: [ 0.533333, 101.650000 ], job: "Tech Support", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
+        // Daerah Jawa
+        { name: "Rina Puspita", company: "PT BCD", location: [ -6.21462, 106.84513 ], job: "Cloud Engineer", province: "DKI Jakarta", city: "Jakarta", graduationYear: 2020 },
+        { name: "Bambang Irawan", company: "PT EFG", location: [ -7.559575, 110.822940 ], job: "Mobile Developer", province: "Jawa Tengah", city: "Magelang", graduationYear: 2019 },
+        { name: "Desi Lestari", company: "PT HIJ", location: [ -6.917464, 107.619123 ], job: "DevOps Engineer", province: "Jawa Barat", city: "Bandung", graduationYear: 2018 },
+        { name: "Ahmad Rahman", company: "PT KLM", location: [ -6.120000, 106.150000 ], job: "Frontend Developer", province: "Banten", city: "Tangerang", graduationYear: 2020 },
+        { name: "Rudi Hartanto", company: "PT NOP", location: [ -6.175110, 106.865039 ], job: "Data Scientist", province: "DKI Jakarta", city: "Jakarta", graduationYear: 2021 },
+        { name: "Siti Aminah", company: "PT QRS", location: [ -7.966620, 112.632632 ], job: "IT Consultant", province: "Jawa Timur", city: "Malang", graduationYear: 2020 },
+        { name: "Yudi Kurniawan", company: "PT TUV", location: [ -6.932907, 107.634398 ], job: "Product Manager", province: "Jawa Barat", city: "Bandung", graduationYear: 2019 },
+        { name: "Ayu Wulandari", company: "PT VWX", location: [ -7.801389, 110.364722 ], job: "Project Manager", province: "DI Yogyakarta", city: "Yogyakarta", graduationYear: 2018 },
+        { name: "Toni Prasetyo", company: "PT YZA", location: [ -8.3405, 115.092 ], job: "Tech Lead", province: "Bali", city: "Denpasar", graduationYear: 2020 },
+        { name: "Fitri Andini", company: "PT ABC", location: [ -7.966620, 112.632632 ], job: "Scrum Master", province: "Jawa Timur", city: "Malang", graduationYear: 2022 },
+        // Tambahan lainnya dari seluruh Indonesia
+        { name: "Lia Kusuma", company: "PT DEF", location: [ 3.595196, 98.672223 ], job: "Penetration Tester", province: "Sumatera Utara", city: "Medan", graduationYear: 2019 },
+        { name: "Dian Sari", company: "PT GHI", location: [ -2.990934, 104.775431 ], job: "System Administrator", province: "Sumatera Selatan", city: "Palembang", graduationYear: 2020 },
+        { name: "Mira Setyaningsih", company: "PT JKL", location: [ -5.429320, 105.262287 ], job: "SEO Specialist", province: "Lampung", city: "Bandar Lampung", graduationYear: 2021 },
+        { name: "Rizal Gunawan", company: "PT MNO", location: [ -8.579892, 116.095239 ], job: "Cybersecurity Analyst", province: "Nusa Tenggara Barat", city: "Mataram", graduationYear: 2022 },
+        { name: "Bayu Mahardika", company: "PT PQR", location: [ -3.336743, 114.591071 ], job: "IT Trainer", province: "Kalimantan Selatan", city: "Banjarmasin", graduationYear: 2018 },
+        { name: "Tari Lestari", company: "PT STU", location: [ 1.484600, 125.527000 ], job: "Data Engineer", province: "Sulawesi Utara", city: "Manado", graduationYear: 2020 },
+        { name: "Arif Budiman", company: "PT VWX", location: [ -3.990743, 122.512974 ], job: "Data Analyst", province: "Sulawesi Tenggara", city: "Kendari", graduationYear: 2021 },
+        { name: "Lisa Anggraini", company: "PT YZA", location: [ -2.533333, 140.716667 ], job: "Tech Support", province: "Papua", city: "Jayapura", graduationYear: 2022 },
+        { name: "Rahmat Santoso", company: "PT ABC", location: [ 3.589665, 98.673805 ], job: "Frontend Developer", province: "Sumatera Utara", city: "Medan", graduationYear: 2020 },
+        { name: "Desi Pratiwi", company: "PT DEF", location: [ -3.991694, 122.512974 ], job: "System Analyst", province: "Sulawesi Tenggara", city: "Kendari", graduationYear: 2020 },
+        // Daerah Sumatera dan Kalimantan
+        { name: "Eko Supriyadi", company: "PT GHI", location: [ -0.789275, 113.921327 ], job: "Cloud Specialist", province: "Kalimantan Tengah", city: "Palangkaraya", graduationYear: 2021 },
+        { name: "Farah Fauziah", company: "PT JKL", location: [ -1.601160, 102.247220 ], job: "Mobile Developer", province: "Jambi", city: "Jambi", graduationYear: 2019 },
+        { name: "Wahyu Kurnia", company: "PT MNO", location: [ 0.533333, 101.450000 ], job: "Network Engineer", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
+        { name: "Dinda Safitri", company: "PT PQR", location: [ 0.433333, 101.750000 ], job: "Full Stack Developer", province: "Riau", city: "Rokan Hilir", graduationYear: 2022 },
+        { name: "Feri Handoko", company: "PT STU", location: [ 1.480000, 101.683333 ], job: "IT Consultant", province: "Riau", city: "Siak", graduationYear: 2020 },
+        // Tambahan alumni lainnya (acak di Indonesia)
+        { name: "Hendra Nugroho", company: "PT XYZ", location: [ -3.316694, 114.618522 ], job: "System Engineer", province: "Kalimantan Selatan", city: "Banjarmasin", graduationYear: 2021 },
+        { name: "Taufik Ismail", company: "PT YZA", location: [ -6.120000, 106.150000 ], job: "Backend Developer", province: "Banten", city: "Tangerang", graduationYear: 2018 },
+        { name: "Siti Maryam", company: "PT ABC", location: [ -6.932907, 107.634398 ], job: "Data Scientist", province: "Jawa Barat", city: "Bandung", graduationYear: 2020 },
+        { name: "Dewi Anggraeni", company: "PT DEF", location: [ -8.3405, 115.092 ], job: "Cybersecurity Specialist", province: "Bali", city: "Denpasar", graduationYear: 2021 },
+        { name: "Ali Mahmud", company: "PT GHI", location: [ -7.966620, 112.632632 ], job: "Full Stack Developer", province: "Jawa Timur", city: "Malang", graduationYear: 2022 }
+    ];    
+
+    function renderTable(data) {
+        const tableBody = document.querySelector("#datatables tbody");
+        tableBody.innerHTML = "";
+
+        if (data.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="7" class="text-center">Tidak ada data</td></tr>`;
+        } else {
+            data.forEach((alumni, index) => {
+                const row = `
+                    <tr>
+                        <td class="text-center">${index + 1}</td>
+                        <td class="text-center">${alumni.name}</td>
+                        <td class="text-center">${alumni.job}</td>
+                        <td class="text-center">${alumni.company}</td>
+                        <td class="text-center">${alumni.province}</td>
+                        <td class="text-center">${alumni.city}</td>
+                        <td class="text-center">${alumni.graduationYear}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+    }
+
+    // Populate dropdown perusahaan dan tahun lulus secara dinamis
+    function populateDropdowns() {
+        const companySet = new Set();
+        const yearSet = new Set();
+
+        alumniData.forEach(alumni => {
+            companySet.add(alumni.company);
+            yearSet.add(alumni.graduationYear);
+        });
+
+        const companySelect = document.querySelector('#companySelect');
+        companySelect.innerHTML = '<option value="">Semua</option>';
+        companySet.forEach(company => {
+            companySelect.innerHTML += `<option value="${company}">${company}</option>`;
+        });
+
+        const yearSelect = document.querySelector('#yearSelect');
+        yearSelect.innerHTML = '<option value="">Semua</option>';
+        yearSet.forEach(year => {
+            yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+        });
+    }
+
+    populateDropdowns();
+
+    // Function to filter alumni based on user input
+    function filterAlumni() {
+        const selectedProvince = $('#provinceSelect').val();
+        const selectedCity = $('#citySelect').val();
+        const nameFilter = $('#filterName').val().toLowerCase(); // Input text untuk nama
+        const selectedCompany = $('#companySelect').val(); // Dropdown perusahaan
+        const selectedYear = $('#yearSelect').val(); // Dropdown tahun lulus
+
+        const filteredData = alumniData.filter(alumni => {
+            const matchProvince = selectedProvince === "" || alumni.province === selectedProvince;
+            const matchCity = selectedCity === "" || alumni.city === selectedCity;
+            const matchName = nameFilter === "" || alumni.name.toLowerCase().includes(nameFilter); // Filter berdasarkan input nama
+            const matchCompany = selectedCompany === "" || alumni.company === selectedCompany; // Filter perusahaan
+            const matchYear = selectedYear === "" || alumni.graduationYear.toString() === selectedYear; // Filter tahun lulus
+            return matchProvince && matchCity && matchName && matchCompany && matchYear;
+        });
+
+        renderTable(filteredData); // Render ulang tabel dengan data yang difilter
+        console.log("Filtered Data:", filteredData);
+    }
+
+    // Event listeners for input changes
+    $('#filterName').on('input', filterAlumni); // Trigger filterAlumni setiap kali nama diinput
+    $('#companySelect').on('change', filterAlumni); // Filter saat perusahaan diubah
+    $('#yearSelect').on('change', filterAlumni); // Filter saat tahun lulus diubah
+    $('#provinceSelect').on('change', filterAlumni); // Filter saat provinsi diubah
+    $('#citySelect').on('change', filterAlumni); // Filter saat kota diubah
+
+    // Panggil fungsi render pertama kali untuk menampilkan semua data
+    renderTable(alumniData);
+
+    // Panggil fungsi filter pertama kali untuk menampilkan semua data
+    filterAlumni(); // Tampilkan semua data saat pertama kali halaman dibuka
+
+
+    
     // Konversi data alumni ke format heatmap (latitude, longitude, intensity)
     var heatData = alumniData.map(function(alumni) {
         return [alumni.location[0], alumni.location[1], 1]; // 1 sebagai intensitas default
@@ -291,9 +355,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Membuat dan menambahkan heatmap ke peta
     var heat = L.heatLayer(heatData, { 
-        radius: 20,  // Ukuran radius titik panas
+        radius: 18  ,  // Ukuran radius titik panas
         blur: 25,    // Efek blur
-        maxZoom: 1  // Zoom maksimal untuk menampilkan heatmap
+        maxZoom: 5  // Zoom maksimal untuk menampilkan heatmap
     }).addTo(map);
 
     var alumniMarkersCluster = L.markerClusterGroup(); // Membuat cluster group
