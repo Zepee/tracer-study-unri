@@ -2,8 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Kode Leaflet dan lainnya di sini
     var map = L.map('map').setView([-2.5, 118], 5);
     
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
     }).addTo(map);
 
     // Variable untuk menyimpan layer yang di-highlight
@@ -29,13 +31,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Style untuk provinsi yang di-highlight
     var highlightProvinceStyle = {
-        color: '#3f3f3f', // Warna biru untuk provinsi yang di-highlight
+        color: '#3f3f3f', 
         weight: 4
     };
 
     // Memuat file GeoJSON batas provinsi
     $.getJSON('/geojson/provinsi.geojson', function(provinsiData) {
-        console.log('Provinsi data loaded:', provinsiData);
         L.geoJson(provinsiData, {
             style: provinceStyle, // Setel style awal untuk provinsi
             onEachFeature: function (feature, layer) {
@@ -55,18 +56,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
                             // Update dropdown provinsi saat provinsi di klik
                             $('#provinceSelect').val(feature.properties.NAME_1).trigger('change');
+                            
+                            // Munculkan layer kota terkait provinsi yang dipilih
+                            showCityLayer(feature.properties.NAME_1);
                         }
                     });
                 }
             }
         }).addTo(map);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Error loading provinsi data:", textStatus, errorThrown);
+        
     });
 
     // Memuat file GeoJSON batas kota
-    $.getJSON('/geojson/kota.geojson', function(kotaData) {
-        console.log('Kota data loaded:', kotaData);
+    $.getJSON('/geojson/kota.geojson', function(kotaData) { 
         L.geoJson(kotaData, {
             style: defaultStyle, // Setel style awal untuk kota
             onEachFeature: function (feature, layer) {
@@ -80,11 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         layer: layer
                     });
 
-                    // Menambahkan event click ke setiap kota
+                    // Pastikan layer kota tidak ditambahkan ke peta saat load awal
+                    layer.remove();
                     layer.on({
                         click: function(e) {
                             highlightCity(layer);
-
                             // Update dropdown kota dan provinsi saat kota di klik
                             $('#provinceSelect').val(feature.properties.NAME_1).trigger('change');
                             $('#citySelect').val(feature.properties.NAME_2).trigger('change');
@@ -92,30 +94,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             }
-        }).addTo(map);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Error loading kota data:", textStatus, errorThrown);
+        });
     });
 
-    // Fungsi untuk highlight provinsi yang dipilih
     function highlightProvince(layer) {
         // Reset highlight dari provinsi sebelumnya jika ada
         if (highlightedProvinceLayer) {
             highlightedProvinceLayer.setStyle(provinceStyle);
         }
-
+    
         layer.setStyle({
-            fillColor: '#3f3f3f', // Warna fill saat di-highlight diubah menjadi #e42e2e
-            color: '#000000', // Warna garis tepi saat di-highlight
+            fillColor: '#3f3f3f', // Warna fill saat di-highlight
+            color: '#000000',     // Warna garis tepi saat di-highlight
             weight: 4,
             fillOpacity: 0.3
-        }); // Warna baru untuk provinsi yang di-highlight
+        });
         map.fitBounds(layer.getBounds());
         highlightedProvinceLayer = layer;
-
+    
         // Update dropdown kota berdasarkan provinsi yang dipilih
         var selectedProvince = layer.feature.properties.NAME_1;
         $('#citySelect').empty().append('<option value="">Pilih Kota</option>');
+    
         if (cityLayers[selectedProvince]) {
             cityLayers[selectedProvince].forEach(function(city) {
                 $('#citySelect').append('<option value="' + city.name + '">' + city.name + '</option>');
@@ -123,6 +123,33 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#citySelect').prop('disabled', false);
         } else {
             $('#citySelect').prop('disabled', true);
+        }
+    
+        // Panggil trigger('change') untuk memaksa UI dropdown kota di-update
+        $('#citySelect').trigger('change');
+    }    
+
+    // Memastikan layer kota dihapus dan ditambahkan sesuai provinsi
+    function showCityLayer(provinceName) {
+        if (cityLayers[provinceName]) {
+            // Hapus semua layer kota yang aktif
+            for (let key in cityLayers) {
+                cityLayers[key].forEach(function(cityObj) {
+                    map.removeLayer(cityObj.layer); // Hapus semua layer kota
+                });
+            }
+
+            // Tambahkan layer kota yang sesuai dengan provinsi yang dipilih
+            cityLayers[provinceName].forEach(function(cityObj) {
+                map.addLayer(cityObj.layer); // Tampilkan layer kota dari provinsi yang dipilih
+                
+                // Debug event klik kota
+                cityObj.layer.on({
+                    click: function(e) {
+                        highlightCity(cityObj.layer);
+                    }
+                });
+            });
         }
     }
 
@@ -134,8 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         layer.setStyle({
-            fillColor: '#e42e2e', // Warna fill saat di-highlight diubah menjadi #e42e2e
-            color: '#000000', // Warna garis tepi saat di-highlight
+            fillColor: '#e42e2e', // Warna fill saat di-highlight
+            color: '#000000',     // Warna garis tepi saat di-highlight
             weight: 5,
             fillOpacity: 0.7
         });
@@ -144,14 +171,19 @@ document.addEventListener('DOMContentLoaded', function() {
         highlightedLayer = layer;
     }
 
-    // Event listener untuk dropdown provinsi
+    // Event listener untuk provinsi
     $('#provinceSelect').change(function() {
         var provinceName = $(this).val();
 
-        // Jika ada provinsi yang dipilih
         if (provinceName && provinceLayers[provinceName]) {
             var layer = provinceLayers[provinceName];
             highlightProvince(layer);
+
+            // Tampilkan layer kota yang sesuai
+            showCityLayer(provinceName);
+
+            // Panggil filter alumni saat provinsi diubah
+            filterAlumni(); 
         }
     });
 
@@ -167,109 +199,181 @@ document.addEventListener('DOMContentLoaded', function() {
             }).layer;
 
             highlightCity(cityLayer);
+
+            // Panggil filter alumni saat kota diubah
+            filterAlumni(); 
         }
+        
     });
 
+    
     // Data Alumni: Nama, Lokasi, dan Pekerjaan
     var alumniData = [
-        { name: "Rizki Santoso", location: [ -6.914744, 107.609810 ], job: "Software Engineer di Bandung" },
-        { name: "Dewi Lestari", location: [ -7.250445, 112.768845 ], job: "Data Analyst di Surabaya" },
-        { name: "Ahmad Wijaya", location: [ 3.595196, 98.672223 ], job: "Manager Operasional di Medan" },
-        { name: "Siti Nurhaliza", location: [ -5.147665, 119.432732 ], job: "Kepala HRD di Makassar" },
-        { name: "Budi Setiawan", location: [ -6.966667, 110.416664 ], job: "Financial Advisor di Semarang" },
-        { name: "Fitri Hidayat", location: [ -8.670458, 115.212629 ], job: "Senior Web Developer di Denpasar" },
-        { name: "Yuni Puspitasari", location: [ -7.795580, 110.369490 ], job: "Project Manager di Yogyakarta" },
-        { name: "Andi Saputra", location: [ 0.533333, 101.450000 ], job: "Konsultan IT di Pekanbaru" },
-        { name: "Maya Sari Dewi", location: [ -3.318606, 114.594378 ], job: "Marketing Manager di Banjarmasin" },
-        { name: "Fajar Kurniawan", location: [ -0.026330, 109.342503 ], job: "Kepala IT di Pontianak" }
-    ];
+        { name: "Rizki Santoso", company: "PT ABC", location: [ -6.914744, 107.609810 ], job: "Software Engineer", province: "Jawa Barat", city: "Bandung", graduationYear: 2020 },
+        { name: "Dewi Lestari", company: "PT XYZ", location: [ -7.250445, 112.768845 ], job: "Data Analyst", province: "Jawa Timur", city: "Surabaya", graduationYear: 2018 },
+        { name: "Ahmad Wijaya", company: "PT DEF", location: [ 3.595196, 98.672223 ], job: "Manager Operasional", province: "Sumatera Utara", city: "Medan", graduationYear: 2019 },
+        { name: "Siti Nurhaliza", company: "PT GHI", location: [ -5.147665, 119.432732 ], job: "Kepala HRD", province: "Sulawesi Selatan", city: "Makassar", graduationYear: 2021 },
+        { name: "Budi Setiawan", company: "PT JKL", location: [ -6.966667, 110.416664 ], job: "Financial Advisor", province: "Jawa Tengah", city: "Semarang", graduationYear: 2022 },
+        { name: "Fitri Hidayat", company: "PT MNO", location: [ -8.670458, 115.212629 ], job: "Senior Web Developer", province: "Bali", city: "Denpasar", graduationYear: 2020 },
+        // Daerah Riau
+        { name: "Andi Saputra", company: "PT PQR", location: [ 0.533333, 101.450000 ], job: "Konsultan IT", province: "Riau", city: "Pekanbaru", graduationYear: 2019 },
+        { name: "Nur Aini", company: "PT STU", location: [ 0.599571, 100.993670 ], job: "Backend Developer", province: "Riau", city: "Dumai", graduationYear: 2020 },
+        { name: "Doni Firmansyah", company: "PT VWX", location: [ 0.520000, 101.450000 ], job: "Frontend Developer", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
+        { name: "Zainul Abidin", company: "PT YZA", location: [ 0.699571, 100.993670 ], job: "IT Support", province: "Riau", city: "Dumai", graduationYear: 2018 },
+        { name: "Rina Amelia", company: "PT BCD", location: [ 0.533333, 101.450000 ], job: "Mobile Developer", province: "Riau", city: "Pekanbaru", graduationYear: 2022 },
+        { name: "Putri Larasati", company: "PT EFG", location: [ 0.633333, 101.150000 ], job: "Data Analyst", province: "Riau", city: "Siak", graduationYear: 2020 },
+        { name: "Budi Haryono", company: "PT HIJ", location: [ 0.333333, 101.450000 ], job: "System Engineer", province: "Riau", city: "Pelalawan", graduationYear: 2019 },
+        { name: "Yulia Kartika", company: "PT KLM", location: [ 0.733333, 101.350000 ], job: "Database Administrator", province: "Riau", city: "Kampar", graduationYear: 2021 },
+        { name: "Syahrul Gunawan", company: "PT NOP", location: [ 0.433333, 101.650000 ], job: "Network Engineer", province: "Riau", city: "Bengkalis", graduationYear: 2020 },
+        { name: "Maya Putri", company: "PT QRS", location: [ 0.333333, 101.750000 ], job: "Full Stack Developer", province: "Riau", city: "Rokan Hilir", graduationYear: 2022 },
+        { name: "Hendra Wijaya", company: "PT TUV", location: [ 0.533333, 101.650000 ], job: "Tech Support", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
+        // Daerah Jawa
+        { name: "Rina Puspita", company: "PT BCD", location: [ -6.21462, 106.84513 ], job: "Cloud Engineer", province: "DKI Jakarta", city: "Jakarta", graduationYear: 2020 },
+        { name: "Bambang Irawan", company: "PT EFG", location: [ -7.559575, 110.822940 ], job: "Mobile Developer", province: "Jawa Tengah", city: "Magelang", graduationYear: 2019 },
+        { name: "Desi Lestari", company: "PT HIJ", location: [ -6.917464, 107.619123 ], job: "DevOps Engineer", province: "Jawa Barat", city: "Bandung", graduationYear: 2018 },
+        { name: "Ahmad Rahman", company: "PT KLM", location: [ -6.120000, 106.150000 ], job: "Frontend Developer", province: "Banten", city: "Tangerang", graduationYear: 2020 },
+        { name: "Rudi Hartanto", company: "PT NOP", location: [ -6.175110, 106.865039 ], job: "Data Scientist", province: "DKI Jakarta", city: "Jakarta", graduationYear: 2021 },
+        { name: "Siti Aminah", company: "PT QRS", location: [ -7.966620, 112.632632 ], job: "IT Consultant", province: "Jawa Timur", city: "Malang", graduationYear: 2020 },
+        { name: "Yudi Kurniawan", company: "PT TUV", location: [ -6.932907, 107.634398 ], job: "Product Manager", province: "Jawa Barat", city: "Bandung", graduationYear: 2019 },
+        { name: "Ayu Wulandari", company: "PT VWX", location: [ -7.801389, 110.364722 ], job: "Project Manager", province: "DI Yogyakarta", city: "Yogyakarta", graduationYear: 2018 },
+        { name: "Toni Prasetyo", company: "PT YZA", location: [ -8.3405, 115.092 ], job: "Tech Lead", province: "Bali", city: "Denpasar", graduationYear: 2020 },
+        { name: "Fitri Andini", company: "PT ABC", location: [ -7.966620, 112.632632 ], job: "Scrum Master", province: "Jawa Timur", city: "Malang", graduationYear: 2022 },
+        // Tambahan lainnya dari seluruh Indonesia
+        { name: "Lia Kusuma", company: "PT DEF", location: [ 3.595196, 98.672223 ], job: "Penetration Tester", province: "Sumatera Utara", city: "Medan", graduationYear: 2019 },
+        { name: "Dian Sari", company: "PT GHI", location: [ -2.990934, 104.775431 ], job: "System Administrator", province: "Sumatera Selatan", city: "Palembang", graduationYear: 2020 },
+        { name: "Mira Setyaningsih", company: "PT JKL", location: [ -5.429320, 105.262287 ], job: "SEO Specialist", province: "Lampung", city: "Bandar Lampung", graduationYear: 2021 },
+        { name: "Rizal Gunawan", company: "PT MNO", location: [ -8.579892, 116.095239 ], job: "Cybersecurity Analyst", province: "Nusa Tenggara Barat", city: "Mataram", graduationYear: 2022 },
+        { name: "Bayu Mahardika", company: "PT PQR", location: [ -3.336743, 114.591071 ], job: "IT Trainer", province: "Kalimantan Selatan", city: "Banjarmasin", graduationYear: 2018 },
+        { name: "Tari Lestari", company: "PT STU", location: [ 1.484600, 125.527000 ], job: "Data Engineer", province: "Sulawesi Utara", city: "Manado", graduationYear: 2020 },
+        { name: "Arif Budiman", company: "PT VWX", location: [ -3.990743, 122.512974 ], job: "Data Analyst", province: "Sulawesi Tenggara", city: "Kendari", graduationYear: 2021 },
+        { name: "Lisa Anggraini", company: "PT YZA", location: [ -2.533333, 140.716667 ], job: "Tech Support", province: "Papua", city: "Jayapura", graduationYear: 2022 },
+        { name: "Rahmat Santoso", company: "PT ABC", location: [ 3.589665, 98.673805 ], job: "Frontend Developer", province: "Sumatera Utara", city: "Medan", graduationYear: 2020 },
+        { name: "Desi Pratiwi", company: "PT DEF", location: [ -3.991694, 122.512974 ], job: "System Analyst", province: "Sulawesi Tenggara", city: "Kendari", graduationYear: 2020 },
+        // Daerah Sumatera dan Kalimantan
+        { name: "Eko Supriyadi", company: "PT GHI", location: [ -0.789275, 113.921327 ], job: "Cloud Specialist", province: "Kalimantan Tengah", city: "Palangkaraya", graduationYear: 2021 },
+        { name: "Farah Fauziah", company: "PT JKL", location: [ -1.601160, 102.247220 ], job: "Mobile Developer", province: "Jambi", city: "Jambi", graduationYear: 2019 },
+        { name: "Wahyu Kurnia", company: "PT MNO", location: [ 0.533333, 101.450000 ], job: "Network Engineer", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
+        { name: "Dinda Safitri", company: "PT PQR", location: [ 0.433333, 101.750000 ], job: "Full Stack Developer", province: "Riau", city: "Rokan Hilir", graduationYear: 2022 },
+        { name: "Feri Handoko", company: "PT STU", location: [ 1.480000, 101.683333 ], job: "IT Consultant", province: "Riau", city: "Siak", graduationYear: 2020 },
+        // Tambahan alumni lainnya (acak di Indonesia)
+        { name: "Hendra Nugroho", company: "PT XYZ", location: [ -3.316694, 114.618522 ], job: "System Engineer", province: "Kalimantan Selatan", city: "Banjarmasin", graduationYear: 2021 },
+        { name: "Taufik Ismail", company: "PT YZA", location: [ -6.120000, 106.150000 ], job: "Backend Developer", province: "Banten", city: "Tangerang", graduationYear: 2018 },
+        { name: "Siti Maryam", company: "PT ABC", location: [ -6.932907, 107.634398 ], job: "Data Scientist", province: "Jawa Barat", city: "Bandung", graduationYear: 2020 },
+        { name: "Dewi Anggraeni", company: "PT DEF", location: [ -8.3405, 115.092 ], job: "Cybersecurity Specialist", province: "Bali", city: "Denpasar", graduationYear: 2021 },
+        { name: "Ali Mahmud", company: "PT GHI", location: [ -7.966620, 112.632632 ], job: "Full Stack Developer", province: "Jawa Timur", city: "Malang", graduationYear: 2022 }
+    ];    
 
-    let alumniTable = document.getElementById('alumniTable');
-    if (alumniTable) {
-        // Gunakan alumniTable di sini
-        alumniData.forEach(function(alumni, index) {
-            var row = alumniTable.insertRow();
-            row.insertCell(0).innerText = alumni.name;
-            row.insertCell(1).innerText = alumni.location.join(", ");
-            row.insertCell(2).innerText = alumni.job;
-            var actionCell = row.insertCell(3);
-            var button = document.createElement("button");
-            button.classList.add("btn-show");
-            button.innerText = "Tampilkan di Peta";
-            button.onclick = function() {
-                showAlumniOnMap(alumni, index);
-            };
-            actionCell.appendChild(button);
-        });
-    } else {
-        console.error('Element dengan id "alumniTable" tidak ditemukan');
-    }
+    function renderTable(data) {
+        const tableBody = document.querySelector("#datatables tbody");
+        tableBody.innerHTML = "";
 
-    // Fungsi untuk menampilkan alumni di peta
-    function showAlumniOnMap(alumni, index) {
-        map.setView(alumni.location, 10); // Zoom ke lokasi alumni
-        if (alumniMarkers[index]) {
-            alumniMarkers[index].addTo(map).openPopup(); // Menambahkan marker dan membuka popup
+        if (data.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="7" class="text-center">Tidak ada data</td></tr>`;
+        } else {
+            data.forEach((alumni, index) => {
+                const row = `
+                    <tr>
+                        <td class="text-center">${index + 1}</td>
+                        <td class="text-center">${alumni.name}</td>
+                        <td class="text-center">${alumni.job}</td>
+                        <td class="text-center">${alumni.company}</td>
+                        <td class="text-center">${alumni.province}</td>
+                        <td class="text-center">${alumni.city}</td>
+                        <td class="text-center">${alumni.graduationYear}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
         }
     }
 
-    // Menambahkan marker untuk setiap alumni di peta
-    alumniData.forEach(function(alumni) {
-        var marker = L.marker(alumni.location).addTo(map);
-        marker.bindPopup("<b>" + alumni.name + "</b><br>Pekerjaan: " + alumni.job);
+    // Populate dropdown perusahaan dan tahun lulus secara dinamis
+    function populateDropdowns() {
+        const companySet = new Set();
+        const yearSet = new Set();
+
+        alumniData.forEach(alumni => {
+            companySet.add(alumni.company);
+            yearSet.add(alumni.graduationYear);
+        });
+
+        const companySelect = document.querySelector('#companySelect');
+        companySelect.innerHTML = '<option value="">Semua</option>';
+        companySet.forEach(company => {
+            companySelect.innerHTML += `<option value="${company}">${company}</option>`;
+        });
+
+        const yearSelect = document.querySelector('#yearSelect');
+        yearSelect.innerHTML = '<option value="">Semua</option>';
+        yearSet.forEach(year => {
+            yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+        });
+    }
+
+    populateDropdowns();
+
+    // Function to filter alumni based on user input
+    function filterAlumni() {
+        const selectedProvince = $('#provinceSelect').val();
+        const selectedCity = $('#citySelect').val();
+        const nameFilter = $('#filterName').val().toLowerCase(); // Input text untuk nama
+        const selectedCompany = $('#companySelect').val(); // Dropdown perusahaan
+        const selectedYear = $('#yearSelect').val(); // Dropdown tahun lulus
+
+        const filteredData = alumniData.filter(alumni => {
+            const matchProvince = selectedProvince === "" || alumni.province === selectedProvince;
+            const matchCity = selectedCity === "" || alumni.city === selectedCity;
+            const matchName = nameFilter === "" || alumni.name.toLowerCase().includes(nameFilter); // Filter berdasarkan input nama
+            const matchCompany = selectedCompany === "" || alumni.company === selectedCompany; // Filter perusahaan
+            const matchYear = selectedYear === "" || alumni.graduationYear.toString() === selectedYear; // Filter tahun lulus
+            return matchProvince && matchCity && matchName && matchCompany && matchYear;
+        });
+
+        renderTable(filteredData); // Render ulang tabel dengan data yang difilter
+        console.log("Filtered Data:", filteredData);
+    }
+
+    // Event listeners for input changes
+    $('#filterName').on('input', filterAlumni); // Trigger filterAlumni setiap kali nama diinput
+    $('#companySelect').on('change', filterAlumni); // Filter saat perusahaan diubah
+    $('#yearSelect').on('change', filterAlumni); // Filter saat tahun lulus diubah
+    $('#provinceSelect').on('change', filterAlumni); // Filter saat provinsi diubah
+    $('#citySelect').on('change', filterAlumni); // Filter saat kota diubah
+
+    // Panggil fungsi render pertama kali untuk menampilkan semua data
+    renderTable(alumniData);
+
+    // Panggil fungsi filter pertama kali untuk menampilkan semua data
+    filterAlumni(); // Tampilkan semua data saat pertama kali halaman dibuka
+
+
+    
+    // Konversi data alumni ke format heatmap (latitude, longitude, intensity)
+    var heatData = alumniData.map(function(alumni) {
+        return [alumni.location[0], alumni.location[1], 1]; // 1 sebagai intensitas default
     });
 
-    //city label
-// Memuat file GeoJSON batas kota
-$.getJSON('/geojson/kota.geojson', function(kotaData) {
-    console.log('Kota data loaded:', kotaData);
-    
-    var activeTooltip = null; // Variabel untuk menyimpan tooltip yang aktif
-
-    L.geoJson(kotaData, {
-        style: defaultStyle, // Setel style awal untuk kota
-        onEachFeature: function (feature, layer) {
-            // Simpan layer kota dengan provinsi sebagai kuncinya
-            if (feature.properties && feature.properties.NAME_2 && feature.properties.NAME_1) {
-                if (!cityLayers[feature.properties.NAME_1]) {
-                    cityLayers[feature.properties.NAME_1] = [];
-                }
-                cityLayers[feature.properties.NAME_1].push({
-                    name: feature.properties.NAME_2,
-                    layer: layer
-                });
-
-                // Menambahkan event click ke setiap kota
-                layer.on({
-                    click: function(e) {
-                        highlightCity(layer);
-
-                        // Update dropdown kota dan provinsi saat kota di klik
-                        $('#provinceSelect').val(feature.properties.NAME_1).trigger('change');
-                        $('#citySelect').val(feature.properties.NAME_2).trigger('change');
-
-                        // Jika ada tooltip yang aktif sebelumnya, tutup tooltip tersebut
-                        if (activeTooltip) {
-                            activeTooltip.closeTooltip();
-                        }
-
-                        // Buka tooltip kota yang diklik
-                        layer.bindTooltip(feature.properties.NAME_2, {
-                            permanent: true, // Tooltip akan tetap terlihat sampai ada klik baru
-                            direction: "center", // Tampilkan di tengah
-                            className: 'city-label' // Tambahkan class untuk styling custom
-                        }).openTooltip();
-
-                        // Simpan tooltip yang sedang aktif
-                        activeTooltip = layer;
-                    }
-                });
-            }
-        }
+    // Membuat dan menambahkan heatmap ke peta
+    var heat = L.heatLayer(heatData, { 
+        radius: 18  ,  // Ukuran radius titik panas
+        blur: 25,    // Efek blur
+        maxZoom: 5  // Zoom maksimal untuk menampilkan heatmap
     }).addTo(map);
-    
-}).fail(function(jqXHR, textStatus, errorThrown) {
-    console.error("Error loading kota data:", textStatus, errorThrown);
+
+    var alumniMarkersCluster = L.markerClusterGroup(); // Membuat cluster group
+
+    // Looping alumni dan membuat marker
+    alumniData.forEach(function(alumni) {
+        var marker = L.marker(alumni.location);
+        
+        // Menambahkan marker ke cluster
+        alumniMarkersCluster.addLayer(marker);
+        
+        // Menambahkan popup dengan informasi alumni
+        marker.bindPopup("<b>" + alumni.name + "</b><br>" + alumni.job);
+    });
+
+    // Menambahkan marker cluster ke peta
+    map.addLayer(alumniMarkersCluster);
 });
 
-});

@@ -5,6 +5,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script src="{{ asset('js/script.js') }}" type="module"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.1/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.5.1/dist/leaflet.markercluster.js"></script>
 
 <x-layout>
     <x-slot name="header">
@@ -51,28 +54,32 @@
         <h3 class="mb-4">Filter Alumni</h3>
         <form class="row g-3">
             <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Nama Perusahaan">
+                <input type="text" class="form-control" placeholder="Nama" id="filterName">
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Nama Negara">
+                <select id="companySelect" class="form-select">
+                    <option value="">Pilih Perusahaan</option>
+                    <!-- Nanti diisi dengan perusahaan secara dinamis di JavaScript -->
+                </select>
             </div>
             <div class="col-md-4">
                 <select id="provinceSelect" class="form-select">
-                <option value="">Pilih Provinsi</option>
+                    <option value="">Pilih Provinsi</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <select id="citySelect" class="form-select" disabled>
-                <option value="">Pilih Kota</option>
+                    <option value="">Pilih Kota</option>
                 </select>
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Tahun Lulus">
-            </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn w-100" style="background-color: #28a745; color: white;">Filter</button>
+                <select id="yearSelect" class="form-select">
+                    <option value="">Semua</option>
+                    <!-- Tahun lulus 2014 sampai tahun sekarang akan diisi dinamis melalui JavaScript -->
+                </select>
             </div>
         </form>
+
 
 
         {{-- Filter --}}
@@ -117,11 +124,11 @@
                     </select>
                 </div> --}}
             </div>
-            <div class="dataTables_filter input-group" style="width: max-content;">
+            <!-- <div class="dataTables_filter input-group" style="width: max-content;">
                 <label class="pt-2 pr-2" for="searchFilterDaftarMahasiswaAdminProdi">Cari</label>
                 <input type="search" class="form-control form-control-md rounded-3 py-1"
                     id="searchFilterDaftarMahasiswaAdminProdi" placeholder="">
-            </div>
+            </div> -->
         </div>
 
         <!-- Tablet & Mobile Version -->
@@ -161,8 +168,9 @@
             <thead class="table-dark">
                 <tr>
                     <th class="text-center" scope="col">Nomor</th>
+                    <th class="text-center" scope="col">Nama</th>
+                    <th class="text-center" scope="col">Pekerjaan</th>
                     <th class="text-center" scope="col">Nama Perusahaan</th>
-                    <th class="text-center" scope="col">Nama Negara</th>
                     <th class="text-center" scope="col">Nama Provinsi</th>
                     <th class="text-center" scope="col">Nama Kota</th>
                     <th class="text-center" scope="col">Tahun Lulus</th>
@@ -170,6 +178,7 @@
             </thead>
             <tbody>
                     <tr>
+                        <td class="text-center">tidak ada data</td>
                         <td class="text-center">tidak ada data</td>
                         <td class="text-center">tidak ada data</td>
                         <td class="text-center">tidak ada data</td>
