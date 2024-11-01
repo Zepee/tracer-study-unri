@@ -5,14 +5,14 @@
                 <h4 class=>{{ $slot }}</h4>
                 <hr>
                 <style>
-                    /* Gaya untuk elemen hr */
                     hr {
-                        border: none; /* Menghapus border default */
-                        height: 5px; /* Ketebalan garis */
-                        background: linear-gradient(to right, #4CAF50, #8BC34A); /* Gradien warna */
-                        margin: 20px 0; /* Jarak atas dan bawah */
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan */
-                        border-radius: 5px; /* Sudut melengkung */
+                        border: none;
+                        height: 5px; 
+                        /* background: linear-gradient(to right, #4CAF50, #8BC34A); */
+                        background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+                        margin: 20px 0; 
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+                        border-radius: 5px; 
                     }
                 </style>
             </div>

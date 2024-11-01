@@ -30,19 +30,25 @@
     <div class="container card p-4">
         <ul class="breadcrumb col-lg-12">
             <li>
+                <a href="{{ route('alumni.profil') }}" class="px-1">
+                    Profil
+                </a>
+            </li>
+            <span class="px-2">|</span>
+            <li>
                 <a href="{{ route('alumni') }}" class="px-1">
                     Data Alumni
                 </a>
             </li>
             <span class="px-2">|</span>
             <li>
-                <a href="{{ route('peta') }}" class="breadcrumb-item active fw-bold text-success px-1">
+                <a href="{{ route('alumni.peta') }}" class="breadcrumb-item active fw-bold text-success px-1">
                     Peta Alumni
                 </a>
             </li>
         </ul>
 
-         <!-- Section Pemetaan Alumni -->
+        <!-- Section Pemetaan Alumni -->
         <div class="container py-5">
             <h2 class="text-center mb-4 fw-bold">Pemetaan Alumni</h2>
             <div class="d-flex justify-content-center mb-5">
@@ -89,13 +95,13 @@
             $unique_status_pekerjaan = ['bekerja', 'tidak bekerja'];
         @endphp
 
-            <!-- Desktop Version -->
+        <!-- Desktop Version -->
         <div class="d-none d-md-flex justify-content-between mb-3 filter">
             <div class="d-flex align-items-center">
                 <div class="dataTables_length input-group" style="width: max-content;">
                     <label class="pt-2 pr-2" for="lengthMenuDaftarMahasiswaAdminProdi">Tampilkan</label>
-                    <select id="lengthMenuDaftarMahasiswaAdminProdi" class="custom-select custom-select-md rounded-3 py-1"
-                        style="width: 55px;">
+                    <select id="lengthMenuDaftarMahasiswaAdminProdi"
+                        class="custom-select custom-select-md rounded-3 py-1" style="width: 55px;">
                         <option value="50">50</option>
                         <option value="100">100</option>
                         <option value="150">150</option>
@@ -135,8 +141,8 @@
         <div class="d-flex flex-wrap justify-content-center gap-3 filter d-block d-md-none">
             <div class="dataTables_length input-group" style="width: max-content;">
                 <label class="pt-2 pr-2" for="lengthMenuMobileDaftarMahasiswaAdminProdi">Tampilkan</label>
-                <select id="lengthMenuMobileDaftarMahasiswaAdminProdi" class="custom-select custom-select-md rounded-3 py-1"
-                    style="width: 55px;">
+                <select id="lengthMenuMobileDaftarMahasiswaAdminProdi"
+                    class="custom-select custom-select-md rounded-3 py-1" style="width: 55px;">
                     <option value="50">50</option>
                     <option value="100">100</option>
                     <option value="150">150</option>
@@ -177,17 +183,17 @@
                 </tr>
             </thead>
             <tbody>
-                    <tr>
-                        <td class="text-center">tidak ada data</td>
-                        <td class="text-center">tidak ada data</td>
-                        <td class="text-center">tidak ada data</td>
-                        <td class="text-center">tidak ada data</td>
-                        <td class="text-center">tidak ada data</td>
-                        <td class="text-center">tidak ada data</td>
-                        <td class="text-center">tidak ada data</td>
+                <tr>
+                    <td class="text-center">tidak ada data</td>
+                    <td class="text-center">tidak ada data</td>
+                    <td class="text-center">tidak ada data</td>
+                    <td class="text-center">tidak ada data</td>
+                    <td class="text-center">tidak ada data</td>
+                    <td class="text-center">tidak ada data</td>
+                    <td class="text-center">tidak ada data</td>
 
-                    
-                        {{-- <td class="text-center">
+
+                    {{-- <td class="text-center">
                             <div class="d-flex gap-2 justify-content-center">
                                 <a class="btn btn-info btn-sm" href="#">
                                     <i class="fas fa-info-circle"></i>
@@ -197,11 +203,11 @@
                                 </button>
                             </div>
                         </td> --}}
-                    </tr>
+                </tr>
             </tbody>
         </table>
     </div>
-    
+
 
 
     @vite(['resources/js/script.js'])
@@ -209,5 +215,3 @@
     <script src="{{ asset('js/script.js') }}"></script>
 
 </x-layout>
-
-

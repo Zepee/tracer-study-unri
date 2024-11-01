@@ -2,41 +2,65 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         .text-unri {
-            color: #2e7d32;
+            color: #198754;
         }
-        .text-unri:hover {
-            color: #1b5e20;
-        }
+        
         .btn-unri {
-            background-color: #2e7d32;
+            background-color: #198754;
             color: white;
         }
         .btn-unri:hover {
-            background-color: #1b5e20;
+            background-color: #20c997;
             color: white;
         }
         .card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
             transition: all 0.3s ease;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        .card-header {
+            background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0 !important;
+            border-bottom: none;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            padding: 12px 30px;
+            font-weight: 500;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(25, 135, 84, 0.2);
         }
         .progress-bar {
             transition: width 1.5s ease-in-out;
         }
         .alert-success {
-            background-color: rgba(46, 125, 50, 0.1);
-            border-color: rgba(46, 125, 50, 0.2);
-            color: #2e7d32;
+            background-color: rgba(25, 135, 84, 0.1);
+            border-color: rgba(25, 135, 84, 0.2);
+            color: #198754;
         }
         .btn-outline-success {
-            color: #2e7d32;
-            border-color: #2e7d32;
+            color: #198754;
+            border-color: #198754;
         }
         .btn-outline-success:hover {
-            background-color: #2e7d32;
+            background-color: #198754;
             color: white;
         }
         .announcement-title {
@@ -54,33 +78,48 @@
             margin-bottom: 0.5rem;
         }
         .pengumuman-item {
-            border-left: 4px solid #2e7d32;
+            border-left: 4px solid #198754;
             padding-left: 15px;
             transition: all 0.3s ease;
         }
         .pengumuman-item:hover {
-            background-color: rgba(46, 125, 50, 0.05);
+            background-color: rgba(25, 135, 84, 0.05);
             transform: translateX(5px);
         }
 
         h2.card-title {
-        font-size: 1.8rem; /* Ukuran font lebih besar */
-        font-weight: bold; /* Menebalkan teks */
-        text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
-        letter-spacing: 1px; /* Jarak antar huruf */
-        color: #2e7d32; /* Warna teks */
-        border-bottom: 2px solid #1b5e20; /* Garis bawah yang lebih tebal */
-        padding-bottom: 0.5rem; /* Jarak bawah */
-        /* align-items: center;
-        justify-content: center;
-        display: flex; */
+        font-size: 1.8rem;
+        font-weight: bold; 
+        letter-spacing: 1px; 
+        color: #198754; 
+        border-bottom: 2px solid #20c997; 
+        padding-bottom: 0.5rem;
         float: none;
 
         }
 
         h2.card-title i {
-        font-size: 1.5rem; /* Ukuran ikon disesuaikan */
-        vertical-align: middle; /* Menjaga ikon sejajar dengan teks */
+        font-size: 1.5rem; 
+        vertical-align: middle; 
+        }
+        .form-label {
+            font-weight: 500;
+            color: #344767;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .form-control,
+        .form-select {
+            padding: 10px 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
         }
     </style>
 
@@ -93,6 +132,7 @@
             <div class="col-lg-8">
                 <div class="card mb-4 border-0 shadow-sm">
                     <div class="card-body">
+                        
                         <h2 class="card-title text-unri mb-4 pb-2 border-bottom col-12"><i class="fas fa-bullhorn me-2"></i>Pengumuman Terbaru</h2>
 
                         <div class="mb-4 pengumuman-item">
