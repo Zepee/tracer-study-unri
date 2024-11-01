@@ -23,24 +23,23 @@
     <link rel="stylesheet" href="{{ asset('/assets/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     {{-- Font Awesome --}}
-    
+
 
 </head>
 <style>
-
-    
     @media only screen and (max-width: 425px) {
 
 
         .green-background {
             display: none !important;
         }
-        .row{
+
+        .row {
             margin-top: -60px;
         }
-        
 
-        .bungkus{
+
+        .bungkus {
             justify-content: center;
             align-items: center;
         }
@@ -55,20 +54,21 @@
         .caption h4 {
             font-size: 18px;
         }
-          .gambar img{
-        margin-top: -30px;
+
+        .gambar img {
+            margin-top: -30px;
         }
 
-        .container{
+        .container {
             margin-top: 100px;
         }
 
-        .footer{
+        .footer {
             margin-bottom: 20px;
         }
 
         .pengembang {
-        color: #212529;
+            color: #212529;
         }
 
         .pengembang:hover {
@@ -82,11 +82,11 @@
             display: none !important;
         }
 
-        .gambar img{
-        margin-top: -25px;
+        .gambar img {
+            margin-top: -25px;
         }
 
-        .bungkus{
+        .bungkus {
             justify-content: center;
             align-items: center
         }
@@ -99,14 +99,14 @@
         }
 
         .pengembang {
-        color: #212529;
+            color: #212529;
         }
 
         .pengembang:hover {
             color: #28a745;
         }
-      
- 
+
+
     }
 
     @media only screen and (max-width: 992px) {
@@ -118,7 +118,7 @@
         margin-top: -25px;
         } */
 
-        .bungkus{
+        .bungkus {
             justify-content: center;
             align-items: center
         }
@@ -131,13 +131,13 @@
         }
 
         .pengembang {
-        color: #212529;
+            color: #212529;
         }
 
         .pengembang:hover {
             color: #28a745;
         }
-        
+
     }
 
     @media only screen and (min-width: 1024px) {
@@ -161,7 +161,7 @@
         }
 
         .pengembang {
-        color: #212529;
+            color: #212529;
         }
 
         .pengembang:hover {
@@ -169,11 +169,11 @@
         }
 
         .green-background {
-        background-color: #28a745;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+            background-color: #28a745;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
 
@@ -185,12 +185,13 @@
             border-radius: 10px;
         }
 
-        .hr-line-dashed {
-            border-top: 1px dashed #e7eaec;
-            color: #ffffff;
-            background-color: #6b9080;
-            height: 1px;
-            margin: 30px 0;
+        hr {
+            border: none; /* Menghapus border default */
+            height: 5px; /* Ketebalan garis */
+            background: linear-gradient(to right, #4CAF50, #8BC34A); /* Gradien warna */
+            margin: 20px 0; /* Jarak atas dan bawah */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan */
+            border-radius: 5px; /* Sudut melengkung */
         }
 
         /* Add more styles as needed for responsiveness at 1024px and below */
@@ -203,46 +204,46 @@
         height: 1px;
         margin: 30px 0;
     }
-    
-
-    
 </style>
 
 <body style="background: radial-gradient(circle at top left, #f1faee, #ffffff);">
 
-<div class="container rounded rounded-sm bg-white shadow">
+    <div class="container rounded  bg-white shadow">
 
-    <div class="row justify-content-center align-items-center" >
+        <div class="row justify-content-center align-items-center">
 
-    <div class="col-xl-8 col-lg-7 col-md-12" >
+            <div class="col-xl-8 col-lg-7 col-md-12">
 
-    <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="slideshow/slide_jte_1-min.jpg" class="d-block" width="100%" alt="..." >
-    </div>
-    <div class="carousel-item ">
-      <img src="slideshow/slide_jte_2-min.jpg" class="d-block" width="100%" alt="..." >
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-    </div>
-    <div class="col-xl-4 col-lg-5 rounded col-md-12 bg-white" >
+                <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="slideshow/slide_jte_1-min.jpg" class="d-block" width="100%" alt="...">
+                        </div>
+                        <div class="carousel-item ">
+                            <img src="slideshow/slide_jte_2-min.jpg" class="d-block" width="100%" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 rounded col-md-12 bg-white">
 
-     <div class="px-5">
+                <div class="px-5">
                     <main class="w-100">
-                        
-                        <form class="form-login" action="{{ route('kuesioner') }}" method="GET" class="text-center mt-5">
+
+                        <form class="form-login" action="{{ route('kuesioner') }}" method="GET"
+                            class="text-center mt-5">
                             {{-- @csrf --}}
-                            
+
                             <div class="d-flex bungkus justify-content-center">
                                 <div class="gambar p-3 mt-3">
                                     <img src="assets/dist/img/unri.png" alt="logo_unri" width="65" height="65">
@@ -252,77 +253,79 @@
                                     <h4 class="text-left">Tracer Study <br> Teknik Informatika <br>Universitas Riau</h4>
                                 </div>
                             </div>
-                            
-                             @if (session()->has('loginError'))
+
+                            @if (session()->has('loginError'))
                                 <div class="text-center alert alert-danger p-1">
-                            <span class="text-danger">Login Gagal!</span>
+                                    <span class="text-danger">Login Gagal!</span>
                                 </div>
-                            
                             @endif
                             @if (session()->has('loginError'))
-                            <div class="form-floating mt-2">
-                            <input type="text"
-                                    class="form-control rounded-1 border border-danger @error('username') is-invalid @enderror"
-                                    name="username" id="username" value="{{ old('username') }}" placeholder="username"
-                                    autofocus required>
+                                <div class="form-floating mt-2">
+                                    <input type="text"
+                                        class="form-control rounded-1 border border-danger @error('username') is-invalid @enderror"
+                                        name="username" id="username" value="{{ old('username') }}"
+                                        placeholder="username" autofocus required>
                                     <label class="label-nim" for="username">NIP/NIM <span
-                                        class="text-danger">*</span></label>
-                                @error('username')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                                @else
+                                            class="text-danger">*</span></label>
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            @else
                                 <div class="form-floating mt-5">
-                                <input type="text"
-                                    class="form-control rounded-1 @error('username') is-invalid @enderror"
-                                    name="username" id="username" value="{{ old('username') }}" placeholder="username"
-                                    autofocus required>
+                                    <input type="text"
+                                        class="form-control rounded-1 @error('username') is-invalid @enderror"
+                                        name="username" id="username" value="{{ old('username') }}"
+                                        placeholder="username" autofocus required>
                                     <label class="label-nim" for="username">NIP/NIM <span
-                                        class="text-danger">*</span></label>
-                                @error('username')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                                @endif
-                                
-                               
+                                            class="text-danger">*</span></label>
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            @endif
+
+
                             <div class="form-floating mt-3 position-relative">
                                 @if (session()->has('loginError'))
-                                <input type="password" class="form-control border border-danger rounded-1" name="password" id="password"
-                                    placeholder="Password" required>
-                                <label for="password">Password <span class="text-danger">*</span></label>
-                                <div class="position-absolute end-0 top-50 translate-middle-y">
-                                    <span class="px-3">
-                                        <i class="fas fa-eye-slash pointer" id="togglePassword"></i>
-                                    </span>
-                                </div>
+                                    <input type="password" class="form-control border border-danger rounded-1"
+                                        name="password" id="password" placeholder="Password" required>
+                                    <label for="password">Password <span class="text-danger">*</span></label>
+                                    <div class="position-absolute end-0 top-50 translate-middle-y">
+                                        <span class="px-3">
+                                            <i class="fas fa-eye-slash pointer" id="togglePassword"></i>
+                                        </span>
+                                    </div>
                                 @else
-                                <input type="password" class="form-control rounded-1" name="password" id="password"
-                                    placeholder="Password" required>
-                                <label for="password">Password <span class="text-danger">*</span></label>
-                                <div class="position-absolute end-0 top-50 translate-middle-y">
-                                    <span class="px-3">
-                                        <i class="fas fa-eye-slash pointer" id="togglePassword"></i>
-                                    </span>
-                                </div>
+                                    <input type="password" class="form-control rounded-1" name="password"
+                                        id="password" placeholder="Password" required>
+                                    <label for="password">Password <span class="text-danger">*</span></label>
+                                    <div class="position-absolute end-0 top-50 translate-middle-y">
+                                        <span class="px-3">
+                                            <i class="fas fa-eye-slash pointer" id="togglePassword"></i>
+                                        </span>
+                                    </div>
                                 @endif
 
                             </div>
 
-                            <a href="{{ route('kuesioner') }}" class="w-100 btn btn-lg btn-success btn-login mt-4 rounded-1">Masuk</a>
+                            <a href="{{ route('kuesioner') }}"
+                                class="w-100 btn btn-lg btn-success btn-login mt-4 rounded-1">Masuk</a>
                         </form>
-                        <small class="kecil d-block text-center mt-3">Belum Punya Akun atau Lupa Password<br>(Hubungi Admin
+                        <small class="kecil d-block text-center mt-3">Belum Punya Akun atau Lupa Password<br>(Hubungi
+                            Admin
                             Prodi)<br></small>
 
-                        <div class="hr-line-dashed mt-2 mb-2"></div>
-
+                        <hr>
+                        
                         <div class="footer text-center">
                             <small>Dikembangkan oleh</small> <br>
-                            <a class="pengembang" href="/developer" target="_blank"><b><small>Tim Prodi Teknik Informatika</small></b></a>
+                            <a class="pengembang" href="/developer" target="_blank"><b><small>Tim Prodi Teknik
+                                        Informatika</small></b></a>
                             <!-- <div class="mt-2">
                                 <small class="text-center"style="color: #98A2B3;">2023 - {{ now()->year }} © SITEI
                                     Universitas Riau</small>
@@ -331,13 +334,13 @@
                     </main>
                 </div>
 
-    </div>
+            </div>
+
+        </div>
 
     </div>
 
-</div>
-   
-   
+
     <!-- <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
       
@@ -370,12 +373,12 @@
                 <div class="kotak-masuk p-3">
                     <main class="form-signin w-100 m-auto">
                         @if (session()->has('loginError'))
-                            <div class="alert alert-danger alert-dismissible fade show float-left" role="alert">
+<div class="alert alert-danger alert-dismissible fade show float-left" role="alert">
                                 {{ session('loginError') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>
-                        @endif
+@endif
                         <form class="form-login" action="/" method="POST" class="text-center mt-5">
                             @csrf
 
@@ -397,10 +400,10 @@
                                 <label class="label-nim" for="username">NIP/NIM <span
                                         class="text-danger">*</span></label>
                                 @error('username')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+    <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+@enderror
                             </div>
 
                             <div class="form-floating mt-3 position-relative">
@@ -442,25 +445,25 @@
     </script>
 
 
-      
-      @push('scripts')
-      <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-      @endpush()
-      @push('scripts')
-     <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
-      @endpush()
-      @push('scripts')
-      <script src="{{ asset('assets/dist/js/bootstrap.bundle.min.js') }}"></script>
-      @endpush()
-      @push('scripts')
-      <script src="{{ asset('assets/dist/js/sweetalert2.all.min.js') }}"></script>
-      @endpush()
-      @push('scripts')
-      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-      @endpush()
-        
-        
-      
+
+    @push('scripts')
+        <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+    @endpush()
+    @push('scripts')
+        <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
+    @endpush()
+    @push('scripts')
+        <script src="{{ asset('assets/dist/js/bootstrap.bundle.min.js') }}"></script>
+    @endpush()
+    @push('scripts')
+        <script src="{{ asset('assets/dist/js/sweetalert2.all.min.js') }}"></script>
+    @endpush()
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @endpush()
+
+
+
     <script>
         document.getElementById("togglePassword").addEventListener("click", function() {
             var passwordInput = document.getElementById("password");
@@ -469,7 +472,7 @@
             this.className = type === "password" ? "fas fa-eye-slash pointer" : "fas fa-eye pointer";
         });
     </script>
-    
+
 </body>
 
 </html>
