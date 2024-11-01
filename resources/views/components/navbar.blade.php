@@ -24,7 +24,7 @@
                 
                 {{-- MENU ALUMNI --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::routeIs('alumni') ? 'text-success' : '' }}" 
+                    <a class="nav-link {{ Str::contains(Request::route()->getName(), 'alumni') ? 'text-success' : '' }}" 
                        aria-current="page" href="{{ route('alumni') }}">ALUMNI</a>
                 </li>
                 
