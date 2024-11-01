@@ -1,3 +1,266 @@
+const alumniData = [
+    {
+        name: "Rizki Santoso",
+        company: "PT ABC",
+        location: [ -6.914744, 107.609810 ],
+        job: "Software Engineer",
+        province: "Jawa Barat",
+        city: "Bandung",
+        graduationYear: 2020,
+        email: "rizki.santoso@abc.com",
+        no_hp: "081234567890",
+        linkedin: "https://www.linkedin.com/in/rizki-santoso",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Saya adalah seorang Software Engineer dengan fokus pada pengembangan aplikasi berbasis web dan mobile. Berpengalaman dalam teknologi modern untuk membangun sistem yang efisien dan mudah diakses.",
+        keahlian: ["JavaScript", "React", "Node.js", "Database Management", "Cloud Computing"],
+        pendidikan: "Universitas Indonesia, Teknik Informatika (2016 - 2020)",
+        pengalaman: [
+            {
+                title: "Software Engineer",
+                company: "PT ABC",
+                period: "Januari 2021 - Sekarang",
+                description: "Mengembangkan dan memelihara aplikasi web perusahaan serta mengimplementasikan fitur-fitur baru yang dibutuhkan oleh klien."
+            },
+            {
+                title: "Frontend Developer Intern",
+                company: "PT Teknologi Cerdas",
+                period: "Juli 2020 - Desember 2020",
+                description: "Membangun antarmuka pengguna untuk aplikasi internal dengan React dan mengoptimalkan kinerja aplikasi."
+            }
+        ]
+    },
+    {
+        name: "Dewi Lestari",
+        company: "PT XYZ",
+        location: [ -7.250445, 112.768845 ],
+        job: "Data Analyst",
+        province: "Jawa Timur",
+        city: "Surabaya",
+        graduationYear: 2018,
+        email: "dewi.lestari@xyz.com",
+        no_hp: "082134567891",
+        linkedin: "https://www.linkedin.com/in/dewi-lestari",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Seorang Data Analyst dengan keahlian dalam pengolahan data besar dan visualisasi data. Berpengalaman menggunakan Python dan SQL untuk menganalisis dan menampilkan data yang berguna bagi perusahaan.",
+        keahlian: ["Python", "SQL", "Data Visualization", "Machine Learning", "Big Data"],
+        pendidikan: "Institut Teknologi Sepuluh Nopember, Statistik (2014 - 2018)",
+        pengalaman: [
+            {
+                title: "Data Analyst",
+                company: "PT XYZ",
+                period: "Maret 2019 - Sekarang",
+                description: "Menganalisis data untuk meningkatkan efisiensi perusahaan dan membuat laporan visualisasi data yang informatif."
+            },
+            {
+                title: "Research Assistant",
+                company: "Universitas",
+                period: "Agustus 2018 - Februari 2019",
+                description: "Membantu dalam penelitian data statistik dan mengembangkan model prediksi untuk penelitian akademis."
+            }
+        ]
+    },
+    {
+        name: "Ahmad Wijaya",
+        company: "PT DEF",
+        location: [ 3.595196, 98.672223 ],
+        job: "Manager Operasional",
+        province: "Sumatera Utara",
+        city: "Medan",
+        graduationYear: 2019,
+        email: "ahmad.wijaya@def.com",
+        no_hp: "083134567892",
+        linkedin: "https://www.linkedin.com/in/ahmad-wijaya",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Seorang Manager Operasional yang memiliki pengalaman dalam manajemen tim dan peningkatan efisiensi operasional perusahaan.",
+        keahlian: ["Operational Management", "Project Planning", "Team Leadership", "Supply Chain Management"],
+        pendidikan: "Universitas Sumatera Utara, Manajemen Bisnis (2015 - 2019)",
+        pengalaman: [
+            {
+                title: "Manager Operasional",
+                company: "PT DEF",
+                period: "Mei 2020 - Sekarang",
+                description: "Mengelola operasi harian dan memastikan efisiensi dalam setiap proses produksi perusahaan."
+            }
+        ]
+    },
+    {
+        name: "Budi Setiawan",
+        company: "PT JKL",
+        location: [ -6.966667, 110.416664 ],
+        job: "Financial Advisor",
+        province: "Jawa Tengah",
+        city: "Semarang",
+        graduationYear: 2022,
+        email: "budi.setiawan@jkl.com",
+        no_hp: "085134567894",
+        linkedin: "https://www.linkedin.com/in/budi-setiawan",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Seorang Financial Advisor yang berfokus pada perencanaan keuangan dan manajemen investasi untuk klien pribadi dan korporat.",
+        keahlian: ["Financial Planning", "Investment Strategy", "Risk Management", "Wealth Management"],
+        pendidikan: "Universitas Gadjah Mada, Ekonomi (2018 - 2022)",
+        pengalaman: [
+            {
+                title: "Financial Advisor",
+                company: "PT JKL",
+                period: "Juni 2022 - Sekarang",
+                description: "Menyusun strategi investasi dan perencanaan keuangan untuk klien dengan berbagai latar belakang."
+            }
+        ]
+    },
+    {
+        name: "Siti Nurhaliza",
+        company: "PT GHI",
+        location: [ -5.147665, 119.432732 ],
+        job: "Kepala HRD",
+        province: "Sulawesi Selatan",
+        city: "Makassar",
+        graduationYear: 2021,
+        email: "siti.nurhaliza@ghi.com",
+        no_hp: "084134567893",
+        linkedin: "https://www.linkedin.com/in/siti-nurhaliza",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Profesional di bidang Sumber Daya Manusia yang berpengalaman dalam rekrutmen, pelatihan, dan pengembangan karyawan.",
+        keahlian: ["Human Resources Management", "Recruitment", "Training & Development", "Employee Relations"],
+        pendidikan: "Universitas Hasanuddin, Psikologi (2017 - 2021)",
+        pengalaman: [
+            {
+                title: "Kepala HRD",
+                company: "PT GHI",
+                period: "April 2021 - Sekarang",
+                description: "Mengelola rekrutmen dan pengembangan karyawan serta memastikan kesejahteraan dan hubungan kerja yang baik di perusahaan."
+            }
+        ]
+    },
+    {
+        name: "Fitri Hidayat",
+        company: "PT MNO",
+        location: [ -8.670458, 115.212629 ],
+        job: "Senior Web Developer",
+        province: "Bali",
+        city: "Denpasar",
+        graduationYear: 2020,
+        email: "fitri.hidayat@mno.com",
+        no_hp: "086134567895",
+        linkedin: "https://www.linkedin.com/in/fitri-hidayat",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Web Developer yang fokus pada pengembangan aplikasi web responsif dan optimasi kinerja website.",
+        keahlian: ["HTML", "CSS", "JavaScript", "React", "Web Optimization"],
+        pendidikan: "Universitas Udayana, Teknologi Informasi (2016 - 2020)",
+        pengalaman: [
+            {
+                title: "Senior Web Developer",
+                company: "PT MNO",
+                period: "Februari 2021 - Sekarang",
+                description: "Bertanggung jawab dalam membangun dan mengoptimalkan aplikasi web untuk klien lokal dan internasional."
+            },
+            {
+                title: "Junior Web Developer",
+                company: "PT Digital Bali",
+                period: "Mei 2020 - Januari 2021",
+                description: "Membantu pengembangan website dengan fokus pada UI/UX dan performa web."
+            }
+        ]
+    },
+    {
+        name: "Taufik Ramadhan",
+        company: "PT OPQ",
+        location: [ -3.316694, 114.618522 ],
+        job: "Network Engineer",
+        province: "Kalimantan Selatan",
+        city: "Banjarmasin",
+        graduationYear: 2019,
+        email: "taufik.ramadhan@opq.com",
+        no_hp: "087123456789",
+        linkedin: "https://www.linkedin.com/in/taufik-ramadhan",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Network Engineer berpengalaman yang bertanggung jawab atas keamanan dan stabilitas jaringan perusahaan.",
+        keahlian: ["Network Design", "Cybersecurity", "Firewall Management", "Troubleshooting"],
+        pendidikan: "Politeknik Negeri Banjarmasin, Teknik Komputer dan Jaringan (2015 - 2019)",
+        pengalaman: [
+            {
+                title: "Network Engineer",
+                company: "PT OPQ",
+                period: "Agustus 2019 - Sekarang",
+                description: "Merancang dan mengelola infrastruktur jaringan untuk mendukung operasional perusahaan."
+            }
+        ]
+    },
+    {
+        name: "Linda Dewi",
+        company: "PT RST",
+        location: [ -7.801389, 110.364444 ],
+        job: "Digital Marketing Specialist",
+        province: "Yogyakarta",
+        city: "Yogyakarta",
+        graduationYear: 2021,
+        email: "linda.dewi@rst.com",
+        no_hp: "088134567896",
+        linkedin: "https://www.linkedin.com/in/linda-dewi",
+        photoUrl: "/images/speed.jpg",
+        tentangSaya: "Digital Marketing Specialist yang fokus pada kampanye pemasaran digital dan optimasi media sosial.",
+        keahlian: ["Social Media Management", "SEO", "Content Marketing", "Google Analytics"],
+        pendidikan: "Universitas Gadjah Mada, Ilmu Komunikasi (2017 - 2021)",
+        pengalaman: [
+            {
+                title: "Digital Marketing Specialist",
+                company: "PT RST",
+                period: "Juni 2021 - Sekarang",
+                description: "Mengelola kampanye digital dan mengoptimalkan kehadiran online perusahaan melalui berbagai platform."
+            }
+        ]
+    }    
+];
+
+
+window.showDetails = function(index) {
+    const alumni = alumniData[index];
+    const modalContent = document.getElementById("modalContent");
+
+    // Isi konten modal dengan data alumni yang dipilih
+    modalContent.innerHTML = `
+        <div class="row">
+            <!-- Kolom Kiri -->
+            <div class="col-md-5 text-center">
+                <img src="${alumni.photoUrl}" alt="${alumni.name}" class="img-fluid mb-3" style="width: 200px; height: 250px; object-fit: cover; border-radius: 10px;">
+                <h4 class="mt-2">${alumni.name}</h4>
+                
+                <h5 class="mt-4">Tentang Saya</h5>
+                <p>${alumni.tentangSaya}</p>
+
+                <h5 class="mt-4">Keahlian</h5>
+                <p>${alumni.keahlian.join(', ')}</p>
+
+                <h5 class="mt-4">Kontak</h5>
+                <p>Email: ${alumni.email} <br> No. HP: ${alumni.no_hp} <br> LinkedIn: <a href="${alumni.linkedin}" target="_blank">Profil LinkedIn</a></p>
+            </div>
+
+            <!-- Kolom Kanan -->
+            <div class="col-md-7">
+                <h5>Pendidikan</h5>
+                <p>${alumni.pendidikan}</p>
+
+                <h5 class="mt-4">Pengalaman</h5>
+                <ul>
+                    ${alumni.pengalaman.map(exp => `
+                        <li>
+                            <strong>${exp.title}</strong> di ${exp.company} (${exp.period}) <br>
+                            ${exp.description}
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        </div>
+    `;
+
+    // Tampilkan modal
+    $('#detailModal').modal('show');
+};
+
+// Button Close Modal
+document.querySelector(".close").addEventListener("click", function() {
+    $('#detailModal').modal('hide');
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // Kode Leaflet dan lainnya di sini
     var map = L.map('map').setView([-2.5, 118], 5);
@@ -206,67 +469,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
     });
 
-    
-    // Data Alumni: Nama, Lokasi, dan Pekerjaan
-    var alumniData = [
-        { name: "Rizki Santoso", company: "PT ABC", location: [ -6.914744, 107.609810 ], job: "Software Engineer", province: "Jawa Barat", city: "Bandung", graduationYear: 2020 },
-        { name: "Dewi Lestari", company: "PT XYZ", location: [ -7.250445, 112.768845 ], job: "Data Analyst", province: "Jawa Timur", city: "Surabaya", graduationYear: 2018 },
-        { name: "Ahmad Wijaya", company: "PT DEF", location: [ 3.595196, 98.672223 ], job: "Manager Operasional", province: "Sumatera Utara", city: "Medan", graduationYear: 2019 },
-        { name: "Siti Nurhaliza", company: "PT GHI", location: [ -5.147665, 119.432732 ], job: "Kepala HRD", province: "Sulawesi Selatan", city: "Makassar", graduationYear: 2021 },
-        { name: "Budi Setiawan", company: "PT JKL", location: [ -6.966667, 110.416664 ], job: "Financial Advisor", province: "Jawa Tengah", city: "Semarang", graduationYear: 2022 },
-        { name: "Fitri Hidayat", company: "PT MNO", location: [ -8.670458, 115.212629 ], job: "Senior Web Developer", province: "Bali", city: "Denpasar", graduationYear: 2020 },
-        // Daerah Riau
-        { name: "Andi Saputra", company: "PT PQR", location: [ 0.533333, 101.450000 ], job: "Konsultan IT", province: "Riau", city: "Pekanbaru", graduationYear: 2019 },
-        { name: "Nur Aini", company: "PT STU", location: [ 0.599571, 100.993670 ], job: "Backend Developer", province: "Riau", city: "Dumai", graduationYear: 2020 },
-        { name: "Doni Firmansyah", company: "PT VWX", location: [ 0.520000, 101.450000 ], job: "Frontend Developer", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
-        { name: "Zainul Abidin", company: "PT YZA", location: [ 0.699571, 100.993670 ], job: "IT Support", province: "Riau", city: "Dumai", graduationYear: 2018 },
-        { name: "Rina Amelia", company: "PT BCD", location: [ 0.533333, 101.450000 ], job: "Mobile Developer", province: "Riau", city: "Pekanbaru", graduationYear: 2022 },
-        { name: "Putri Larasati", company: "PT EFG", location: [ 0.633333, 101.150000 ], job: "Data Analyst", province: "Riau", city: "Siak", graduationYear: 2020 },
-        { name: "Budi Haryono", company: "PT HIJ", location: [ 0.333333, 101.450000 ], job: "System Engineer", province: "Riau", city: "Pelalawan", graduationYear: 2019 },
-        { name: "Yulia Kartika", company: "PT KLM", location: [ 0.733333, 101.350000 ], job: "Database Administrator", province: "Riau", city: "Kampar", graduationYear: 2021 },
-        { name: "Syahrul Gunawan", company: "PT NOP", location: [ 0.433333, 101.650000 ], job: "Network Engineer", province: "Riau", city: "Bengkalis", graduationYear: 2020 },
-        { name: "Maya Putri", company: "PT QRS", location: [ 0.333333, 101.750000 ], job: "Full Stack Developer", province: "Riau", city: "Rokan Hilir", graduationYear: 2022 },
-        { name: "Hendra Wijaya", company: "PT TUV", location: [ 0.533333, 101.650000 ], job: "Tech Support", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
-        // Daerah Jawa
-        { name: "Rina Puspita", company: "PT BCD", location: [ -6.21462, 106.84513 ], job: "Cloud Engineer", province: "DKI Jakarta", city: "Jakarta", graduationYear: 2020 },
-        { name: "Bambang Irawan", company: "PT EFG", location: [ -7.559575, 110.822940 ], job: "Mobile Developer", province: "Jawa Tengah", city: "Magelang", graduationYear: 2019 },
-        { name: "Desi Lestari", company: "PT HIJ", location: [ -6.917464, 107.619123 ], job: "DevOps Engineer", province: "Jawa Barat", city: "Bandung", graduationYear: 2018 },
-        { name: "Ahmad Rahman", company: "PT KLM", location: [ -6.120000, 106.150000 ], job: "Frontend Developer", province: "Banten", city: "Tangerang", graduationYear: 2020 },
-        { name: "Rudi Hartanto", company: "PT NOP", location: [ -6.175110, 106.865039 ], job: "Data Scientist", province: "DKI Jakarta", city: "Jakarta", graduationYear: 2021 },
-        { name: "Siti Aminah", company: "PT QRS", location: [ -7.966620, 112.632632 ], job: "IT Consultant", province: "Jawa Timur", city: "Malang", graduationYear: 2020 },
-        { name: "Yudi Kurniawan", company: "PT TUV", location: [ -6.932907, 107.634398 ], job: "Product Manager", province: "Jawa Barat", city: "Bandung", graduationYear: 2019 },
-        { name: "Ayu Wulandari", company: "PT VWX", location: [ -7.801389, 110.364722 ], job: "Project Manager", province: "DI Yogyakarta", city: "Yogyakarta", graduationYear: 2018 },
-        { name: "Toni Prasetyo", company: "PT YZA", location: [ -8.3405, 115.092 ], job: "Tech Lead", province: "Bali", city: "Denpasar", graduationYear: 2020 },
-        { name: "Fitri Andini", company: "PT ABC", location: [ -7.966620, 112.632632 ], job: "Scrum Master", province: "Jawa Timur", city: "Malang", graduationYear: 2022 },
-        // Tambahan lainnya dari seluruh Indonesia
-        { name: "Lia Kusuma", company: "PT DEF", location: [ 3.595196, 98.672223 ], job: "Penetration Tester", province: "Sumatera Utara", city: "Medan", graduationYear: 2019 },
-        { name: "Dian Sari", company: "PT GHI", location: [ -2.990934, 104.775431 ], job: "System Administrator", province: "Sumatera Selatan", city: "Palembang", graduationYear: 2020 },
-        { name: "Mira Setyaningsih", company: "PT JKL", location: [ -5.429320, 105.262287 ], job: "SEO Specialist", province: "Lampung", city: "Bandar Lampung", graduationYear: 2021 },
-        { name: "Rizal Gunawan", company: "PT MNO", location: [ -8.579892, 116.095239 ], job: "Cybersecurity Analyst", province: "Nusa Tenggara Barat", city: "Mataram", graduationYear: 2022 },
-        { name: "Bayu Mahardika", company: "PT PQR", location: [ -3.336743, 114.591071 ], job: "IT Trainer", province: "Kalimantan Selatan", city: "Banjarmasin", graduationYear: 2018 },
-        { name: "Tari Lestari", company: "PT STU", location: [ 1.484600, 125.527000 ], job: "Data Engineer", province: "Sulawesi Utara", city: "Manado", graduationYear: 2020 },
-        { name: "Arif Budiman", company: "PT VWX", location: [ -3.990743, 122.512974 ], job: "Data Analyst", province: "Sulawesi Tenggara", city: "Kendari", graduationYear: 2021 },
-        { name: "Lisa Anggraini", company: "PT YZA", location: [ -2.533333, 140.716667 ], job: "Tech Support", province: "Papua", city: "Jayapura", graduationYear: 2022 },
-        { name: "Rahmat Santoso", company: "PT ABC", location: [ 3.589665, 98.673805 ], job: "Frontend Developer", province: "Sumatera Utara", city: "Medan", graduationYear: 2020 },
-        { name: "Desi Pratiwi", company: "PT DEF", location: [ -3.991694, 122.512974 ], job: "System Analyst", province: "Sulawesi Tenggara", city: "Kendari", graduationYear: 2020 },
-        // Daerah Sumatera dan Kalimantan
-        { name: "Eko Supriyadi", company: "PT GHI", location: [ -0.789275, 113.921327 ], job: "Cloud Specialist", province: "Kalimantan Tengah", city: "Palangkaraya", graduationYear: 2021 },
-        { name: "Farah Fauziah", company: "PT JKL", location: [ -1.601160, 102.247220 ], job: "Mobile Developer", province: "Jambi", city: "Jambi", graduationYear: 2019 },
-        { name: "Wahyu Kurnia", company: "PT MNO", location: [ 0.533333, 101.450000 ], job: "Network Engineer", province: "Riau", city: "Pekanbaru", graduationYear: 2021 },
-        { name: "Dinda Safitri", company: "PT PQR", location: [ 0.433333, 101.750000 ], job: "Full Stack Developer", province: "Riau", city: "Rokan Hilir", graduationYear: 2022 },
-        { name: "Feri Handoko", company: "PT STU", location: [ 1.480000, 101.683333 ], job: "IT Consultant", province: "Riau", city: "Siak", graduationYear: 2020 },
-        // Tambahan alumni lainnya (acak di Indonesia)
-        { name: "Hendra Nugroho", company: "PT XYZ", location: [ -3.316694, 114.618522 ], job: "System Engineer", province: "Kalimantan Selatan", city: "Banjarmasin", graduationYear: 2021 },
-        { name: "Taufik Ismail", company: "PT YZA", location: [ -6.120000, 106.150000 ], job: "Backend Developer", province: "Banten", city: "Tangerang", graduationYear: 2018 },
-        { name: "Siti Maryam", company: "PT ABC", location: [ -6.932907, 107.634398 ], job: "Data Scientist", province: "Jawa Barat", city: "Bandung", graduationYear: 2020 },
-        { name: "Dewi Anggraeni", company: "PT DEF", location: [ -8.3405, 115.092 ], job: "Cybersecurity Specialist", province: "Bali", city: "Denpasar", graduationYear: 2021 },
-        { name: "Ali Mahmud", company: "PT GHI", location: [ -7.966620, 112.632632 ], job: "Full Stack Developer", province: "Jawa Timur", city: "Malang", graduationYear: 2022 }
-    ];    
-
     function renderTable(data) {
         const tableBody = document.querySelector("#datatables tbody");
         tableBody.innerHTML = "";
-
+    
         if (data.length === 0) {
             tableBody.innerHTML = `<tr><td colspan="7" class="text-center">Tidak ada data</td></tr>`;
         } else {
@@ -280,6 +486,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td class="text-center">${alumni.province}</td>
                         <td class="text-center">${alumni.city}</td>
                         <td class="text-center">${alumni.graduationYear}</td>
+                        <td class="text-center">
+                            <div class="d-flex gap-2 justify-content-center">
+                                <button class="btn btn-info btn-sm" onclick="showDetails(${index})" data-toggle="modal" data-target="#detailModal">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 `;
                 tableBody.innerHTML += row;
@@ -291,27 +504,27 @@ document.addEventListener('DOMContentLoaded', function() {
     function populateDropdowns() {
         const companySet = new Set();
         const yearSet = new Set();
-
+    
         alumniData.forEach(alumni => {
             companySet.add(alumni.company);
             yearSet.add(alumni.graduationYear);
         });
-
+    
         const companySelect = document.querySelector('#companySelect');
         companySelect.innerHTML = '<option value="">Semua</option>';
         companySet.forEach(company => {
             companySelect.innerHTML += `<option value="${company}">${company}</option>`;
         });
-
+    
         const yearSelect = document.querySelector('#yearSelect');
         yearSelect.innerHTML = '<option value="">Semua</option>';
         yearSet.forEach(year => {
             yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
         });
     }
-
+    
     populateDropdowns();
-
+    
     // Function to filter alumni based on user input
     function filterAlumni() {
         const selectedProvince = $('#provinceSelect').val();
@@ -319,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nameFilter = $('#filterName').val().toLowerCase(); // Input text untuk nama
         const selectedCompany = $('#companySelect').val(); // Dropdown perusahaan
         const selectedYear = $('#yearSelect').val(); // Dropdown tahun lulus
-
+    
         const filteredData = alumniData.filter(alumni => {
             const matchProvince = selectedProvince === "" || alumni.province === selectedProvince;
             const matchCity = selectedCity === "" || alumni.city === selectedCity;
@@ -328,40 +541,75 @@ document.addEventListener('DOMContentLoaded', function() {
             const matchYear = selectedYear === "" || alumni.graduationYear.toString() === selectedYear; // Filter tahun lulus
             return matchProvince && matchCity && matchName && matchCompany && matchYear;
         });
-
+    
         renderTable(filteredData); // Render ulang tabel dengan data yang difilter
+        updateMap(filteredData); // Update peta berdasarkan hasil filter
         console.log("Filtered Data:", filteredData);
     }
-
+    
+    // Function to update map with filtered data
+    function updateMap(filteredData) {
+        // Hapus heatmap dan marker lama dari peta
+        if (heat) {
+            map.removeLayer(heat);
+        }
+        if (alumniMarkersCluster) {
+            map.removeLayer(alumniMarkersCluster);
+        }
+    
+        // Update heatmap data dengan data yang terfilter
+        const heatData = filteredData.map(alumni => [alumni.location[0], alumni.location[1], 1]);
+    
+        // Gambar ulang heatmap berdasarkan hasil filter
+        heat = L.heatLayer(heatData, { 
+            radius: 18,
+            blur: 25,
+            maxZoom: 5
+        }).addTo(map);
+    
+        // Update marker cluster dengan data yang terfilter
+        alumniMarkersCluster = L.markerClusterGroup();
+        filteredData.forEach(function(alumni) {
+            var marker = L.marker(alumni.location);
+    
+            // Menambahkan marker ke cluster
+            alumniMarkersCluster.addLayer(marker);
+    
+            // Menambahkan popup dengan informasi alumni
+            marker.bindPopup("<b>" + alumni.name + "</b><br>" + alumni.job);
+        });
+    
+        // Tambahkan marker cluster yang baru ke peta
+        map.addLayer(alumniMarkersCluster);
+    }
+    
     // Event listeners for input changes
     $('#filterName').on('input', filterAlumni); // Trigger filterAlumni setiap kali nama diinput
     $('#companySelect').on('change', filterAlumni); // Filter saat perusahaan diubah
     $('#yearSelect').on('change', filterAlumni); // Filter saat tahun lulus diubah
     $('#provinceSelect').on('change', filterAlumni); // Filter saat provinsi diubah
     $('#citySelect').on('change', filterAlumni); // Filter saat kota diubah
-
+    
     // Panggil fungsi render pertama kali untuk menampilkan semua data
     renderTable(alumniData);
-
+    
     // Panggil fungsi filter pertama kali untuk menampilkan semua data
     filterAlumni(); // Tampilkan semua data saat pertama kali halaman dibuka
 
-
-    
     // Konversi data alumni ke format heatmap (latitude, longitude, intensity)
     var heatData = alumniData.map(function(alumni) {
         return [alumni.location[0], alumni.location[1], 1]; // 1 sebagai intensitas default
     });
-
+    
     // Membuat dan menambahkan heatmap ke peta
     var heat = L.heatLayer(heatData, { 
-        radius: 18  ,  // Ukuran radius titik panas
-        blur: 25,    // Efek blur
-        maxZoom: 5  // Zoom maksimal untuk menampilkan heatmap
+        radius: 20,
+        blur: 25,
+        maxZoom: 5
     }).addTo(map);
-
+    
     var alumniMarkersCluster = L.markerClusterGroup(); // Membuat cluster group
-
+    
     // Looping alumni dan membuat marker
     alumniData.forEach(function(alumni) {
         var marker = L.marker(alumni.location);
@@ -372,8 +620,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Menambahkan popup dengan informasi alumni
         marker.bindPopup("<b>" + alumni.name + "</b><br>" + alumni.job);
     });
-
+    
     // Menambahkan marker cluster ke peta
     map.addLayer(alumniMarkersCluster);
+    
 });
 
