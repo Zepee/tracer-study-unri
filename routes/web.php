@@ -7,11 +7,11 @@ Route::get('/', function () {
     return view('login.index');
 });
 
-Route::get('/kuesioner', [KuesionerController::class, 'create'])->name('kuesioner');
+Route::get('/kuesioner', [KuesionerController::class, 'getKuesionerView'])->name('kuesioner');
 
-Route::post('/kuesioner', [KuesionerController::class, 'store'])->name('kuesioner.store');
+// HIT API
+Route::post('/kuesioner/store', [KuesionerController::class, 'store'])->name('kuesioner.store');
 
-Route::get('/kuesioner/success', [KuesionerController::class, 'success'])->name('kuesioner.success');
 
 Route::get('/alumni', function () {
     return view('alumni.alumni');
@@ -28,3 +28,5 @@ Route::get('/alumni/peta', function () {
 Route::get('/alumni/profil', function () {
     return view('profil.profil');
 })->name('alumni.profil');
+
+

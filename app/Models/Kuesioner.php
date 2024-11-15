@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kuesioner extends Model
 {
+    protected $table = 'kuesioners';
+
+    protected $primaryKey = 'id';
+
     use HasFactory;
 
     protected $fillable = [
@@ -19,6 +23,8 @@ class Kuesioner extends Model
         'email',
         'nik',
         'linkedIn',
+
+        // Pekerjaan
         'status',
         'waktu_kerja',
         'bulan_dapat_kerja',
@@ -26,12 +32,16 @@ class Kuesioner extends Model
         'provinsi',
         'kota',
         'jenis_instansi',
+        'jenis_instansi_lainnya',
+
         'nama_perusahaan',
         'posisi',
         'tingkat_tempat_kerja',
         'sumber_dana',
+        'sumber_dana_lainnya',
         'hubungan_bidang',
         'tingkat_pendidikan',
+
         // Kompetensi fields
         'kompetensi_lulus_etika',
         'kompetensi_kerja_etika',
@@ -48,4 +58,13 @@ class Kuesioner extends Model
         'kompetensi_lulus_pengembangan_diri',
         'kompetensi_kerja_pengembangan_diri',
     ];
+
+    // Tambahkan casting untuk field decimal
+    protected $casts = [
+        'pendapatan_perbulan' => 'decimal:2',
+    ];
+
+    // Tambahkan konstanta untuk nilai status
+    const STATUS_BEKERJA = 'bekerja';
+    const STATUS_TIDAK_BEKERJA = 'tidak_bekerja';
 }

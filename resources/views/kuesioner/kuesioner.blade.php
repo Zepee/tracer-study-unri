@@ -136,6 +136,8 @@
             box-shadow: 0 5px 15px rgba(25, 135, 84, 0.2);
         }
 
+
+
         /* Responsive */
         @media (max-width: 768px) {
             .card-body {
@@ -160,7 +162,6 @@
             padding: 20px;
             border-radius: 8px;
             margin-top: 15px;
-            display: none;
         }
 
         /* Validation States */
@@ -215,192 +216,192 @@
                     <div class="form-section active mb-4">
                         <h5>Identitas</h5>
                         <div class="row g-3">
+
                             <div class="col-md-6">
-                                <label class="form-label">1. Nomor Induk Mahasiswa</label>
-                                <input type="text" class="form-control" name="nomor_mahasiswa" required>
+                                <label class="form-label">1. Nama</label>
+                                <input type="text" class="form-control" name="nama">
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">2. Kode PT</label>
-                                <input type="text" class="form-control" name="kode_pt" value="001017" readonly>
+                                <label class="form-label">2. Nomor Induk Mahasiswa</label>
+                                <input type="text" class="form-control" name="nomor_mahasiswa">
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">3. Tahun Lulus</label>
-                                <input type="text" class="form-control" name="tahun_lulus" required>
+                                <input type="text" class="form-control" name="tahun_lulus">
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">4. Kode Prodi</label>
-                                <input type="text" class="form-control" name="kode_prodi" required>
+                                <label class="form-label">4. Nomor Telepon/HP</label>
+                                <input type="text" class="form-control" name="nomor_telepon">
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">5. Nama</label>
-                                <input type="text" class="form-control" name="nama" required>
+                                <label class="form-label">5. Alamat Email</label>
+                                <input type="email" class="form-control" name="email">
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">6. Nomor Telepon/HP</label>
-                                <input type="text" class="form-control" name="nomor_telepon" required>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">7. Alamat Email</label>
-                                <input type="email" class="form-control" name="email" required>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">8. NIK</label>
-                                <input type="text" class="form-control" name="nik" required>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label">9. LinkedIn</label>
+                                <label class="form-label">6. LinkedIn</label>
                                 <input type="text" class="form-control" name="linkedIn">
                             </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">7. Kode PT</label>
+                                <input type="text" class="form-control" name="kode_pt" value="001017" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">8. Kode Prodi</label>
+                                <input type="text" class="form-control" name="kode_prodi" value="131028" readonly>
+                            </div>
+
+                            {{-- <div class="col-md-6">
+                                <label class="form-label">9. NIK</label>
+                                <input type="text" class="form-control" name="nik" required>
+                            </div> --}}
+
                         </div>
                     </div>
 
                     <!-- Status Saat Ini -->
                     <div class="form-section mb-4">
-                        <h5>Kuesioner Wajib</h5>
+                        <h5>Pekerjaan</h5>
                         <div class="mb-3">
                             <label class="form-label">10. Jelaskan status Anda saat ini?</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" value="1" required>
-                                <label class="form-check-label">Bekerja (full time/part time)</label>
+                                <input class="form-check-input" type="radio" name="status" value="bekerja">
+                                <label class="form-check-label">Bekerja</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" value="3">
-                                <label class="form-check-label">Wiraswasta</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" value="4">
-                                <label class="form-check-label">Melanjutkan Pendidikan</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" value="5">
-                                <label class="form-check-label">Tidak Kerja tetapi sedang mencari kerja</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" value="2">
-                                <label class="form-check-label">Belum memungkinkan bekerja</label>
+                                <input class="form-check-input" type="radio" name="status" value="tidak_bekerja">
+                                <label class="form-check-label">Tidak Bekerja</label>
                             </div>
                         </div>
 
-                        <!-- f5M. Waktu Mendapatkan Pekerjaan -->
-                        <div class="mb-3" id="waktuKerjaSection">
-                            <label class="form-label">11. Apakah anda telah mendapatkan pekerjaan <= 6 bulan / termasuk
-                                    bekerja sebelum lulus ?</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="waktu_kerja"
-                                            value="ya">
-                                        <label class="form-check-label">Ya</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="waktu_kerja"
-                                            value="tidak">
-                                        <label class="form-check-label">Tidak</label>
-                                    </div>
-
-                                    <div class="mt-2" id="detailWaktuKerja">
-                                        <div class="mb-2">
-                                            <label class="form-label">Dalam berapa bulan anda mendapatkan
-                                                pekerjaan?</label>
-                                            <input type="number" class="form-control" name="bulan_dapat_kerja">
+                        <!-- Container untuk pertanyaan 11-16 -->
+                        <div id="pertanyaanPekerjaan" style="display: none;">
+                            <!-- Pertanyaan 11 -->
+                            <div class="mb-3">
+                                <label class="form-label">11. Apakah anda telah mendapatkan pekerjaan <= 6 bulan /
+                                        termasuk bekerja sebelum lulus?</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="waktu_kerja"
+                                                value="ya">
+                                            <label class="form-check-label">Ya</label>
                                         </div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Berapa rata-rata pendapatan anda per
-                                                bulan? (take home pay)?</label>
-                                            <input type="number" class="form-control" name="pendapatan_perbulan">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="waktu_kerja"
+                                                value="tidak">
+                                            <label class="form-check-label">Tidak</label>
                                         </div>
-                                    </div>
-                        </div>
 
-                        <!-- Lokasi Kerja -->
-                        <div class="mb-3">
-                            <label class="form-label">12. Dimana lokasi tempat Anda bekerja?</label>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <select class="form-select" name="provinsi" required>
-                                        <option value="">Pilih Provinsi</option>
-                                        <!-- Tambahkan opsi provinsi -->
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <select class="form-select" name="kota" required>
-                                        <option value="">Pilih Kabupaten/Kota</option>
-                                        <!-- Tambahkan opsi kota -->
-                                    </select>
+                                        <div class="mt-2" id="detailWaktuKerja">
+                                            <div class="mb-2">
+                                                <label class="form-label">Dalam berapa bulan anda mendapatkan
+                                                    pekerjaan?</label>
+                                                <input type="number" class="form-control" name="bulan_dapat_kerja">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Berapa rata-rata pendapatan anda per
+                                                    bulan? (take home pay)?</label>
+                                                <input type="number" class="form-control" name="pendapatan_perbulan">
+                                            </div>
+                                        </div>
+                            </div>
+
+                            <!-- Pertanyaan 12 -->
+                            <div class="mb-3">
+                                <label class="form-label">12. Dimana lokasi tempat Anda bekerja?</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select class="form-select" name="provinsi">
+                                            <option value="">Pilih Provinsi</option>
+                                            <!-- Tambahkan opsi provinsi -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" name="kota">
+                                            <option value="">Pilih Kabupaten/Kota</option>
+                                            <!-- Tambahkan opsi kota -->
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Jenis Instansi -->
-                        <div class="mb-3">
-                            <label class="form-label">13. Apa jenis perusahaan/instansi/institusi tempat anda
-                                bekerja sekarang?</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_instansi" value="1">
-                                <label class="form-check-label">Instansi pemerintah</label>
+                            <!-- Pertanyaan 13 -->
+                            <div class="mb-3">
+                                <label class="form-label">13. Apa jenis perusahaan/instansi/institusi tempat anda
+                                    bekerja sekarang?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis_instansi" value="1">
+                                    <label class="form-check-label">Instansi pemerintah</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis_instansi"
+                                        value="6">
+                                    <label class="form-check-label">BUMN/BUMD</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis_instansi"
+                                        value="7">
+                                    <label class="form-check-label">Institusi/Organisasi Multilateral</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis_instansi"
+                                        value="2">
+                                    <label class="form-check-label">Organisasi non-profit/Lembaga Swadaya
+                                        Masyarakat</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis_instansi"
+                                        value="3">
+                                    <label class="form-check-label">Perusahaan swasta</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis_instansi"
+                                        value="4">
+                                    <label class="form-check-label">Wiraswasta/perusahaan sendiri</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis_instansi"
+                                        value="5">
+                                    <label class="form-check-label">Lainnya, tuliskan:</label>
+                                    <input type="text" class="form-control mt-2" name="jenis_instansi_lainnya">
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_instansi" value="6">
-                                <label class="form-check-label">BUMN/BUMD</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_instansi" value="7">
-                                <label class="form-check-label">Institusi/Organisasi Multilateral</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_instansi" value="2">
-                                <label class="form-check-label">Organisasi non-profit/Lembaga Swadaya
-                                    Masyarakat</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_instansi" value="3">
-                                <label class="form-check-label">Perusahaan swasta</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_instansi" value="4">
-                                <label class="form-check-label">Wiraswasta/perusahaan sendiri</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_instansi" value="5">
-                                <label class="form-check-label">Lainnya, tuliskan:</label>
-                                <input type="text" class="form-control mt-2" name="jenis_instansi_lainnya">
-                            </div>
-                        </div>
 
-                        <!-- Nama Perusahaan -->
-                        <div class="mb-3">
-                            <label class="form-label">14. Apa nama perusahaan/kantor tempat Anda
-                                bekerja?</label>
-                            <input type="text" class="form-control" name="nama_perusahaan">
-                        </div>
+                            <!-- Pertanyaan 14 -->
+                            <div class="mb-3">
+                                <label class="form-label">14. Apa nama perusahaan/kantor tempat Anda
+                                    bekerja?</label>
+                                <input type="text" class="form-control" name="nama_perusahaan">
+                            </div>
 
-                        <!-- Posisi -->
-                        <div class="mb-3">
-                            <label class="form-label">15. Bila berwiraswasta, apa posisi/jabatan Anda saat
-                                ini?</label>
-                            <select class="form-select" name="posisi">
-                                <option value="">Pilih Posisi</option>
-                                <!-- Tambahkan opsi posisi -->
-                            </select>
-                        </div>
+                            <!-- Pertanyaan 15 -->
+                            <div class="mb-3">
+                                <label class="form-label">15. Bila berwiraswasta, apa posisi/jabatan Anda saat
+                                    ini?</label>
+                                <select class="form-select" name="posisi">
+                                    <option value="">Pilih Posisi</option>
+                                    <!-- Tambahkan opsi posisi -->
+                                </select>
+                            </div>
 
-                        <!-- Tingkat Tempat Kerja -->
-                        <div class="mb-3">
-                            <label class="form-label">16. Apa tingkat tempat kerja Anda?</label>
-                            <select class="form-select" name="tingkat_tempat_kerja">
-                                <option value="">Pilih Tingkatan</option>
-                                <!-- Tambahkan opsi tingkatan -->
-                            </select>
+                            <!-- Pertanyaan 16 -->
+                            <div class="mb-3">
+                                <label class="form-label">16. Apa tingkat tempat kerja Anda?</label>
+                                <select class="form-select" name="tingkat_tempat_kerja">
+                                    <option value="">Pilih Tingkatan</option>
+                                    <!-- Tambahkan opsi tingkatan -->
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Pertanyaan Studi Lanjut -->
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
+                            <h5>Kuesioner Wajib</h5>
                             <label class="form-label">17. Pertanyaan studi lanjut</label>
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -425,7 +426,7 @@
                                     <input type="date" class="form-control" name="tanggal_masuk">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Sumber Dana -->
                         <div class="mb-3">
@@ -548,16 +549,16 @@
                                                 <td>{{ $kompetensi }}</td>
                                                 @for ($i = 1; $i <= 5; $i++)
                                                     <td>
-                                                        <input class="form-check-input" type="radio" 
+                                                        <input class="form-check-input" type="radio"
                                                             name="kompetensi_lulus_{{ Str::slug($kompetensi) }}"
-                                                            value="{{ $i }}" required>
+                                                            value="{{ $i }}">
                                                     </td>
                                                 @endfor
                                                 @for ($i = 1; $i <= 5; $i++)
                                                     <td>
                                                         <input class="form-check-input" type="radio"
                                                             name="kompetensi_kerja_{{ Str::slug($kompetensi) }}"
-                                                            value="{{ $i }}" required>
+                                                            value="{{ $i }}">
                                                     </td>
                                                 @endfor
                                             </tr>
@@ -580,64 +581,61 @@
 
     @push('scripts')
         <script>
-            // Form validation
-            (function() {
-                'use strict'
-                var forms = document.querySelectorAll('.needs-validation')
-                Array.prototype.slice.call(forms)
-                    .forEach(function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (!form.checkValidity()) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-            })()
+            document.addEventListener('DOMContentLoaded', function() {
+                // Tambahkan di awal script setelah DOMContentLoaded
+                console.log('Status radios:', document.querySelectorAll('input[name="status"]').length);
+                console.log('Pertanyaan container:', document.getElementById('pertanyaanPekerjaan'));
 
-            // Show/hide waktu kerja section based on status
-            document.querySelectorAll('input[name="status"]').forEach(function(radio) {
-                radio.addEventListener('change', function() {
-                    const waktuKerjaSection = document.getElementById('waktuKerjaSection')
-                    if (this.value === '1' || this.value === '3') {
-                        waktuKerjaSection.style.display = 'block'
-                    } else {
-                        waktuKerjaSection.style.display = 'none'
-                    }
-                })
-            })
+                // Fungsi untuk pertanyaan pekerjaan
+                const setupPekerjaanForm = () => {
+                    const radios = document.querySelectorAll('input[name="status"]');
+                    const container = document.getElementById('pertanyaanPekerjaan');
 
-            // Show/hide detail waktu kerja based on selection
-            document.querySelectorAll('input[name="waktu_kerja"]').forEach(function(radio) {
-                radio.addEventListener('change', function() {
-                    const detailWaktuKerja = document.getElementById('detailWaktuKerja')
-                    if (this.value === 'ya') {
-                        detailWaktuKerja.style.display = 'block'
-                    } else {
-                        detailWaktuKerja.style.display = 'none'
-                    }
-                })
-            })
-
-            // Highlight active section based on scroll
-            const sections = document.querySelectorAll('.form-section')
-            window.addEventListener('scroll', () => {
-                let current = ''
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop
-                    const sectionHeight = section.clientHeight
-                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                        current = section
-                    }
-                })
-                sections.forEach(section => {
-                    section.classList.remove('active')
-                })
-                if (current) {
-                    current.classList.add('active')
+                    radios.forEach(radio => {
+                        radio.addEventListener('change', function() {
+                            container.style.display = this.value === 'bekerja' ? 'block' : 'none';
+                        });
+                    });
                 }
-            })
+
+                // Form validation
+                const setupFormValidation = () => {
+                    const forms = document.querySelectorAll('.needs-validation');
+                    forms.forEach(form => {
+                        form.addEventListener('submit', event => {
+                            if (!form.checkValidity()) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        });
+                    });
+                }
+
+                // Highlight active section
+                const setupSectionHighlight = () => {
+                    const sections = document.querySelectorAll('.form-section');
+                    window.addEventListener('scroll', () => {
+                        let current = '';
+                        sections.forEach(section => {
+                            const sectionTop = section.offsetTop;
+                            const sectionHeight = section.clientHeight;
+                            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                                current = section;
+                            }
+                        });
+                        sections.forEach(section => section.classList.remove('active'));
+                        if (current) {
+                            current.classList.add('active');
+                        }
+                    });
+                }
+
+                // Initialize all functions
+                setupPekerjaanForm();
+                setupFormValidation();
+                setupSectionHighlight();
+            });
         </script>
     @endpush
 
