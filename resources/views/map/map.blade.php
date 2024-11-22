@@ -252,7 +252,10 @@
             </li>
             <span class="px-2">|</span>
             <li>
-                <a href="{{ route('alumni') }}" class="breadcrumb-item active fw-bold text-success px-1">
+
+                <a href="{{ route('alumni') }}" class="px-1" >
+
+
                     Data Alumni
                 </a>
             </li>
@@ -260,6 +263,7 @@
             <li>
 
                 <a href="{{ route('alumni.peta') }}" class="breadcrumb-item active fw-bold text-success px-1">
+
                     Peta Alumni
                 </a>
             </li>
